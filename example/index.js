@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import algoliasearch from 'algoliasearch/lite';
 import algoliasearchHelper from 'algoliasearch-helper';
-import App from './App';
+import App from './src/App';
 import './index.css';
 
 const client = algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');

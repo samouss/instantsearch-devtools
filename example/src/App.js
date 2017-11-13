@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch/dom';
+import Hit from './Hit';
 
 const App = ({ client, helper }) => (
   <InstantSearch
@@ -9,7 +10,9 @@ const App = ({ client, helper }) => (
     algoliaHelper={helper}
   >
     <SearchBox />
-    <Hits />
+    <Hits
+      hitComponent={Hit}
+    />
   </InstantSearch>
 );
 
