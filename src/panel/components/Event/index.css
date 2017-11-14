@@ -1,0 +1,22 @@
+.EventLayout {
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.EventLayout:last-child {
+  border-bottom: none;
+}
+
+.EventLayout:hover {
+  background-color: #f3f3f3;
+}
+
+.EventLayout__Link {
+  padding: 10px;
+  display: block;
+}
+
+.EventLayout__Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
