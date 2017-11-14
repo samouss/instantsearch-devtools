@@ -2,11 +2,12 @@ const port = chrome.runtime.connect({
   name: 'contentScript',
 });
 
-const onMessageFromDevTools = (event, sender) => {
-  console.group('contentScript: onMessageFromDevTools');
-  console.log(event);
-  console.log(sender);
-  console.groupEnd();
+const onMessageFromDevTools = event => {
+// const onMessageFromDevTools = (event, sender) => {
+  // console.group('contentScript: onMessageFromDevTools');
+  // console.log(event);
+  // console.log(sender);
+  // console.groupEnd();
 
   if (event.type === 'CONNECTION_READY') {
     window.postMessage({

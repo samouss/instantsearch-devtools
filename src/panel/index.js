@@ -9,9 +9,9 @@ const createListenerAndApp = () => {
   const store = configureStore();
 
   const onMessageFromPage = event => {
-    console.group('Panel: onMessageFromPage');
-    console.log('Event', event);
-    console.groupEnd();
+    // console.group('Panel: onMessageFromPage');
+    // console.log('Event', event);
+    // console.groupEnd();
 
     store.dispatch(event);
   };

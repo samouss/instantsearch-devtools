@@ -14,12 +14,14 @@ const onMessageFromDevTools = event => {
   const isFromExtension = event.data && event.data.source === 'chrome-devtools-experiments-content-script';
 
   if (isSameSource && isFromExtension) {
-    const { type, payload } = event.data;
+    const { type } = event.data;
+    // const { type, payload } = event.data;
 
-    console.group('hook: onMessageFromDevTools');
-    console.log('Type', type);
-    console.log('Payload', payload);
-    console.groupEnd();
+    // Only for debugging
+    // console.group('hook: onMessageFromDevTools');
+    // console.log('Type', type);
+    // console.log('Payload', payload);
+    // console.groupEnd();
 
     if (type === 'CONNECTION_READY') {
       state.queue.forEach(postMessageFromHook);
