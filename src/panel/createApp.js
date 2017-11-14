@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import MessageList from './containers/MessageList';
+import VisibleEventList from './containers/VisibleEventList';
 
 const createApp = store => (
   <Provider store={store}>
-    <MessageList />
+    <VisibleEventList />
   </Provider>
 );
 

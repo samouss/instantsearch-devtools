@@ -1,11 +1,11 @@
 import { v4 } from 'uuid';
 
-// type MessageTypes =
+// type EventType =
 //   | 'CHANGE'
 //   | 'SEARCH'
 //   | 'RESULT'
 
-const messages = (state = [], action) => {
+const events = (state = [], action) => {
   switch (action.type) {
     case 'CHANGE': {
       const item = {
@@ -47,6 +47,6 @@ const messages = (state = [], action) => {
   }
 };
 
-export default messages;
+export default events;
 
-export const getMessages = state => state.messages;
+export const getEvents = state => state.events;

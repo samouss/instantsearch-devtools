@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import messages from '../modules/messages/reducer';
+import events from '../modules/events/reducer';
 
 export default combineReducers({
-  messages,
+  events,
 });

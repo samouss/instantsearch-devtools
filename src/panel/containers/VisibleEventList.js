@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getMessages } from '../modules/messages/reducer';
+import { getEvents } from '../modules/events/reducer';
 import EventList from '../components/EventList';
 import Event from '../components/Event';
 
@@ -26,7 +26,7 @@ VisibleEventList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  messages: getMessages(state),
+  messages: getEvents(state),
 });
 
 export default connect(mapStateToProps)(VisibleEventList);
