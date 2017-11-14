@@ -3,10 +3,10 @@ const state = {
   queue: [],
 };
 
-const postMessageFromHook = payload =>
+const postMessageFromHook = event =>
   window.postMessage({
     source: 'chrome-devtools-experiments-hook',
-    payload,
+    ...event,
   }, '*');
 
 const onMessageFromDevTools = event => {
