@@ -6,13 +6,22 @@
   border-bottom: none;
 }
 
-.EventLayout:hover {
+.EventLayout__Link {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+}
+
+.EventLayout__Link:hover {
+  cursor: pointer;
   background-color: #f3f3f3;
 }
 
-.EventLayout__Link {
-  padding: 10px;
-  display: block;
+.EventLayout__Link:focus {
+  outline: none;
 }
 
 .EventLayout__Header {

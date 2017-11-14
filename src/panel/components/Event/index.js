@@ -8,21 +8,26 @@ const Event = ({
   type,
   time,
   children,
+  onClick,
 }) => (
   <section styleName="EventLayout">
-    <a href="#!" styleName="EventLayout__Link">
+    <button
+      styleName="EventLayout__Link"
+      onClick={onClick}
+    >
       <header styleName="EventLayout__Header">
         <Tag type={type} />
         <Time time={time} />
       </header>
       {children}
-    </a>
+    </button>
   </section>
 );
 
 Event.propTypes = {
   type: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 
