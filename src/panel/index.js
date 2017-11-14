@@ -1,6 +1,7 @@
+import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import configureStore from './store/configureStore';
-import createApp from './createApp';
+import App from './App';
 import './index.css';
 
 const createListenerAndApp = () => {
@@ -38,7 +39,10 @@ const createListenerAndApp = () => {
 
   unmountComponentAtNode(container);
 
-  render(createApp(store), container);
+  render(
+    <App store={store} />,
+    container,
+  );
 };
 
 chrome.devtools.network.onNavigated.addListener(createListenerAndApp);
