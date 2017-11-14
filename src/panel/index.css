@@ -11,6 +11,10 @@ a {
   text-decoration: inherit;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 :global #root {
   height: 100%;
 }
