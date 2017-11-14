@@ -10,10 +10,7 @@ const helper = algoliasearchHelper(client, 'bestbuy');
 
 const run = () => {
   // eslint-disable-next-line
-  window.__DEVTOOLS_EXPERIMENTS_HOOK__ && window.__DEVTOOLS_EXPERIMENTS_HOOK__({
-    name: 'react-sandox',
-    version: '1.3.0',
-  });
+  window.__DEVTOOLS_EXPERIMENTS_HOOK__ && window.__DEVTOOLS_EXPERIMENTS_HOOK__(helper);
 
   render(
     <App
