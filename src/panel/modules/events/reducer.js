@@ -1,11 +1,13 @@
 import { v4 } from 'uuid';
+import { combineReducers } from 'redux';
+import * as actionTypes from './actionTypes';
 
 // type EventType =
 //   | 'CHANGE'
 //   | 'SEARCH'
 //   | 'RESULT'
 
-const events = (state = [], action) => {
+const list = (state = [], action) => {
   switch (action.type) {
     case 'CHANGE': {
       const item = {
@@ -47,6 +49,25 @@ const events = (state = [], action) => {
   }
 };
 
-export default events;
+const selected = (state = '', action) => {
+  switch (action.type) {
+    case actionTypes.EVENT_SELECT: {
+      return action.payload.id;
+    }
 
-export const getEvents = state => state.events;
+    default: {
+      return state;
+    }
+  }
+};
+
+export default combineReducers({
+  list,
+  selected,
+});
+
+export const getEvents = state => state.events.list;
+export const getSelected = state => state.events.selected;
+
+export const getEvent = state =>
+  getEvents(state).find(_ => _.id === getSelected(state));
