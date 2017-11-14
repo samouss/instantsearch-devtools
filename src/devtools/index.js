@@ -1,1 +1,1 @@
-chrome.devtools.panels.create('Experiments', null, 'panel.html', null);
+chrome.devtools.panels.create('InstantSearch ⚡️', null, 'panel.html', null);
