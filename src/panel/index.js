@@ -1,30 +1,27 @@
-import React from 'react';
-import { render } from 'react-dom';
-import App from './App';
+import { render, unmountComponentAtNode } from 'react-dom';
+import configureStore from './store/configureStore';
+import createApp from './createApp';
 import './index.css';
 
-const onMessageFromPage = event => {
-  console.group('Panel: onMessageFromPage');
-  console.log('Event', event);
-  console.groupEnd();
-
-  render(
-    <App
-      name={event.payload.name}
-      version={event.payload.version}
-    />,
-    document.getElementById('root'),
-  );
-};
-
-const onDisconnect = port => {
-  port.onMessage.removeListener(onMessageFromPage);
-  port.onDisconnect.removeListener(onDisconnect);
-
-  port.disconnect();
-};
-
 const createListenerAndApp = () => {
+  const container = document.getElementById('root');
+  const store = configureStore();
+
+  const onMessageFromPage = event => {
+    console.group('Panel: onMessageFromPage');
+    console.log('Event', event);
+    console.groupEnd();
+
+    store.dispatch(event);
+  };
+
+  const onDisconnect = port => {
+    port.onMessage.removeListener(onMessageFromPage);
+    port.onDisconnect.removeListener(onDisconnect);
+
+    port.disconnect();
+  };
+
   const port = chrome.runtime.connect({
     name: chrome.devtools.inspectedWindow.tabId.toString(),
   });
@@ -39,10 +36,9 @@ const createListenerAndApp = () => {
     },
   });
 
-  render(
-    <App />,
-    document.getElementById('root'),
-  );
+  unmountComponentAtNode(container);
+
+  render(createApp(store), container);
 };
 
 chrome.devtools.network.onNavigated.addListener(createListenerAndApp);
