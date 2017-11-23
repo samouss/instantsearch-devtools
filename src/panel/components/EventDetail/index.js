@@ -38,7 +38,7 @@ const EventDetail = ({
         <Tag type={type} />
       </span>
 
-      <Time type={time} />
+      <Time time={time} />
     </header>
 
     <div styleName="EventDetail__Parameters">
