@@ -1,11 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
 import rootReducer from './rootReducer';
 
 const configureStore = () => {
+  const middlewares = [];
+
+  if (process.env.NODE_ENV !== 'production') {
+    const { logger } = require('redux-logger');
+
+    middlewares.push(logger);
+  }
+
   return createStore(
     rootReducer,
-    applyMiddleware(logger),
+    applyMiddleware(...middlewares),
   );
 };
 
