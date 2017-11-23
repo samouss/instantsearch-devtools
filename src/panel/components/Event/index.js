@@ -8,11 +8,12 @@ const Event = ({
   type,
   time,
   children,
+  selected,
   onClick,
 }) => (
   <section styleName="EventLayout">
     <button
-      styleName="EventLayout__Link"
+      styleName={`EventLayout__Link ${selected ? 'EventLayout__Link--selected' : ''}`}
       onClick={onClick}
     >
       <header styleName="EventLayout__Header">
@@ -28,6 +29,7 @@ Event.propTypes = {
   type: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
 

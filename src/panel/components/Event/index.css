@@ -15,7 +15,8 @@
   background: none;
 }
 
-.EventLayout__Link:hover {
+.EventLayout__Link:hover,
+.EventLayout__Link--selected {
   cursor: pointer;
   background-color: #f3f3f3;
 }
