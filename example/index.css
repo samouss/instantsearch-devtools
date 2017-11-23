@@ -4,3 +4,26 @@ body {
   margin: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 25px 0;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+:global {
+  .ais-SearchBox__root {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+}
