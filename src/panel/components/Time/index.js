@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import './index.css';
 
 const TimeAgo = ({ time }) => (
   <span styleName="Time">
-    {moment(time).format('HH:mm:ss:SSSS')}
+    {DateTime.fromJSDate(new Date(time)).toFormat('HH:mm:ss:SSS')}
   </span>
 );
 
