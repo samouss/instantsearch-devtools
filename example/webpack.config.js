@@ -2,6 +2,9 @@ const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
 
 const EXTENSION_ENV = process.env.EXTENSION_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+const isProduction = NODE_ENV === 'production';
 
 const clean = plugins =>
   plugins.filter(x => !!x);
@@ -91,6 +94,21 @@ module.exports = () => ({
 
     new webpack.DefinePlugin({
       'process.env.EXTENSION_ENV': JSON.stringify(EXTENSION_ENV),
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+    }),
+
+    isProduction && new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false,
+      },
+      mangle: {
+        screw_ie8: true,
+      },
+      output: {
+        comments: false,
+        screw_ie8: true,
+      },
     }),
   ]),
 });
