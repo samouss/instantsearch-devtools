@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "start": "yarn clean && webpack-dev-server --inline --no-info",
-    "build": "yarn clean && NODE_ENV=production webpack"
+    "build": "yarn clean && EXTENSION_ENV=production NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
