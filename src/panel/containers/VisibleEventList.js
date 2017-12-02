@@ -21,11 +21,13 @@ const VisibleEventList = ({ events, event, onEventClick }) => (
 );
 
 VisibleEventList.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    time: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
   event: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -47,7 +49,4 @@ const mapDispatchToProps = dispatch => ({
   onEventClick: id => () => dispatch(selectEvent(id)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(VisibleEventList);
+export default connect(mapStateToProps, mapDispatchToProps)(VisibleEventList);

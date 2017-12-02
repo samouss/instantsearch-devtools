@@ -6,8 +6,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const isProduction = NODE_ENV === 'production';
 
-const clean = plugins =>
-  plugins.filter(x => !!x);
+const clean = plugins => plugins.filter(x => !!x);
 
 module.exports = () => ({
   devtool: 'cheap-module-source-map',
@@ -28,9 +27,12 @@ module.exports = () => ({
             loader: 'babel-loader',
             options: {
               plugins: [
-                ['react-css-modules', {
-                  generateScopedName: '[local]--[hash:base64:5]',
-                }],
+                [
+                  'react-css-modules',
+                  {
+                    generateScopedName: '[local]--[hash:base64:5]',
+                  },
+                ],
               ],
             },
           },
@@ -73,12 +75,11 @@ module.exports = () => ({
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: '[name].[chunkhash:8].js',
-      minChunks: module => (
+      minChunks: module =>
         module.context &&
         module.context.indexOf('node_modules') !== -1 &&
         module.resource &&
-        module.resource.match(/\.js$/)
-      ),
+        module.resource.match(/\.js$/),
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
@@ -97,18 +98,19 @@ module.exports = () => ({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
     }),
 
-    isProduction && new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      mangle: {
-        screw_ie8: true,
-      },
-      output: {
-        comments: false,
-        screw_ie8: true,
-      },
-    }),
+    isProduction &&
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          screw_ie8: true,
+          warnings: false,
+        },
+        mangle: {
+          screw_ie8: true,
+        },
+        output: {
+          comments: false,
+          screw_ie8: true,
+        },
+      }),
   ]),
 });

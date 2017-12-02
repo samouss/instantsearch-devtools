@@ -26,12 +26,7 @@ const theme = {
   base0F: '#3971ED',
 };
 
-const EventDetail = ({
-  type,
-  time,
-  parameters,
-  results,
-}) => (
+const EventDetail = ({ type, time, parameters, results }) => (
   <section styleName="EventDetail">
     <header>
       <span styleName="EventDetail__Type">
@@ -42,18 +37,12 @@ const EventDetail = ({
     </header>
 
     <div styleName="EventDetail__Parameters">
-      <JSONTree
-        data={parameters}
-        theme={theme}
-      />
+      <JSONTree data={parameters} theme={theme} />
     </div>
 
     {results && (
       <div styleName="EventDetail__Results">
-        <JSONTree
-          data={results}
-          theme={theme}
-        />
+        <JSONTree data={results} theme={theme} />
       </div>
     )}
   </section>

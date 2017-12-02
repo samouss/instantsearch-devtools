@@ -39,10 +39,7 @@ const createListenerAndApp = () => {
 
   unmountComponentAtNode(container);
 
-  render(
-    <App store={store} />,
-    container,
-  );
+  render(<App store={store} />, container);
 };
 
 chrome.devtools.network.onNavigated.addListener(createListenerAndApp);

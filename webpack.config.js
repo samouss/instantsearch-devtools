@@ -8,11 +8,10 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const clean = plugins =>
-  plugins.filter(x => !!x);
+const clean = plugins => plugins.filter(x => !!x);
 
 const CSSLoaderLocalIdentifier = isProduction =>
-  (!isProduction ? '[local]--[hash:base64:5]' : '[hash:base64]');
+  !isProduction ? '[local]--[hash:base64:5]' : '[hash:base64]';
 
 const CSSLoaderConfiguration = isProduction => ({
   loader: 'css-loader',
@@ -27,28 +26,37 @@ const CSSLoaderConfiguration = isProduction => ({
 
 module.exports = () => {
   const hook = {
-    hook: [
-      `${__dirname}/src/polyfills.js`,
-      `${__dirname}/src/hook/index.js`,
-    ],
+    hook: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/hook/index.js`],
   };
 
   const extension = {
     background: [
       `${__dirname}/src/polyfills.js`,
-      `${__dirname}/src/background.js`,
+      `${__dirname}/src/background.ts`,
     ],
     contentScript: [
       `${__dirname}/src/polyfills.js`,
       `${__dirname}/src/contentScript.js`,
     ],
-    panel: [
-      `${__dirname}/src/polyfills.js`,
-      `${__dirname}/src/panel/index.js`,
-    ],
+    panel: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/panel/index.js`],
     devtools: `${__dirname}/src/devtools/index.js`,
-    loader: !isProduction ? `${__dirname}/src/loader/development.js`
+    loader: !isProduction
+      ? `${__dirname}/src/loader/development.js`
       : `${__dirname}/src/loader/production.js`,
+  };
+
+  const babel = {
+    loader: 'babel-loader',
+    options: {
+      plugins: [
+        [
+          'react-css-modules',
+          {
+            generateScopedName: CSSLoaderLocalIdentifier(isProduction),
+          },
+        ],
+      ],
+    },
   };
 
   const configuration = {
@@ -64,19 +72,15 @@ module.exports = () => {
     module: {
       loaders: [
         {
-          test: /\.(j|t)s(x?)$/,
+          test: /\.ts(x?)$/,
+          exclude: /node_modules/,
+          loaders: [babel],
+        },
+        {
+          test: /\.js$/,
           exclude: /node_modules/,
           loaders: [
-            {
-              loader: 'babel-loader',
-              options: {
-                plugins: [
-                  ['react-css-modules', {
-                    generateScopedName: CSSLoaderLocalIdentifier(isProduction),
-                  }],
-                ],
-              },
-            },
+            babel,
             {
               loader: 'eslint-loader',
               options: {
@@ -89,17 +93,19 @@ module.exports = () => {
         },
         {
           test: /\.css$/,
-          loader: !isProduction ? [
-            { loader: 'style-loader' },
-            CSSLoaderConfiguration(isProduction),
-            { loader: 'postcss-loader' },
-          ] : ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              CSSLoaderConfiguration(isProduction),
-              { loader: 'postcss-loader' },
-            ],
-          }),
+          loader: !isProduction
+            ? [
+                { loader: 'style-loader' },
+                CSSLoaderConfiguration(isProduction),
+                { loader: 'postcss-loader' },
+              ]
+            : ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [
+                  CSSLoaderConfiguration(isProduction),
+                  { loader: 'postcss-loader' },
+                ],
+              }),
         },
         {
           test: /\.html$/,
@@ -112,12 +118,13 @@ module.exports = () => {
     },
     plugins: clean([
       !isProduction && new WriteFilePlugin(),
-      !isProduction && new ChromeExtensionReloader({
-        entries: {
-          contentScript: 'contentScript',
-          background: 'background',
-        },
-      }),
+      !isProduction &&
+        new ChromeExtensionReloader({
+          entries: {
+            contentScript: 'contentScript',
+            background: 'background',
+          },
+        }),
 
       new ForkTsCheckerWebpackPlugin({
         async: false,
@@ -137,30 +144,33 @@ module.exports = () => {
         chunks: ['devtools'],
       }),
 
-      isProduction && new ExtractTextPlugin({
-        filename: '[name].css',
-        allChunks: true,
-      }),
+      isProduction &&
+        new ExtractTextPlugin({
+          filename: '[name].css',
+          allChunks: true,
+        }),
 
-      isProduction && new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production'),
-        },
-      }),
+      isProduction &&
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production'),
+          },
+        }),
 
-      isProduction && new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          screw_ie8: true,
-          warnings: false,
-        },
-        mangle: {
-          screw_ie8: true,
-        },
-        output: {
-          comments: false,
-          screw_ie8: true,
-        },
-      }),
+      isProduction &&
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            screw_ie8: true,
+            warnings: false,
+          },
+          mangle: {
+            screw_ie8: true,
+          },
+          output: {
+            comments: false,
+            screw_ie8: true,
+          },
+        }),
     ]),
   };
 

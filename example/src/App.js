@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InstantSearch, SearchBox, Hits, Configure } from 'react-instantsearch/dom';
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  Configure,
+} from 'react-instantsearch/dom';
 import Hit from './Hit';
 
 const App = ({ client, helper }) => (
   <main>
     <h1>
-      InstantSearch DevTools <span role="img" aria-label="InstantSearch">⚡️</span>
+      InstantSearch DevTools{' '}
+      <span role="img" aria-label="InstantSearch">
+        ⚡️
+      </span>
     </h1>
 
     <InstantSearch
@@ -14,15 +22,11 @@ const App = ({ client, helper }) => (
       algoliaClient={client}
       algoliaHelper={helper}
     >
-      <Configure
-        hitsPerPage={30}
-      />
+      <Configure hitsPerPage={30} />
 
       <SearchBox />
 
-      <Hits
-        hitComponent={Hit}
-      />
+      <Hits hitComponent={Hit} />
     </InstantSearch>
   </main>
 );

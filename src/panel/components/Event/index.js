@@ -4,16 +4,12 @@ import Tag from '../Tag';
 import Time from '../Time';
 import './index.css';
 
-const Event = ({
-  type,
-  time,
-  children,
-  selected,
-  onClick,
-}) => (
+const Event = ({ type, time, children, selected, onClick }) => (
   <section styleName="EventLayout">
     <button
-      styleName={`EventLayout__Link ${selected ? 'EventLayout__Link--selected' : ''}`}
+      styleName={`EventLayout__Link ${
+        selected ? 'EventLayout__Link--selected' : ''
+      }`}
       onClick={onClick}
     >
       <header styleName="EventLayout__Header">

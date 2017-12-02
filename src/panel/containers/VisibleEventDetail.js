@@ -9,11 +9,7 @@ const VisibleEventDetail = ({ event }) => {
     return null;
   }
 
-  return (
-    <EventDetail
-      {...event}
-    />
-  );
+  return <EventDetail {...event} />;
 };
 
 VisibleEventDetail.propTypes = {

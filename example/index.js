@@ -9,14 +9,13 @@ const client = algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');
 const helper = algoliasearchHelper(client, 'bestbuy');
 
 const run = () => {
-  // eslint-disable-next-line
-  window.__DEVTOOLS_EXPERIMENTS_HOOK__ && window.__DEVTOOLS_EXPERIMENTS_HOOK__(helper);
+  /* eslint-disable no-underscore-dangle, no-unused-expressions */
+  window.__DEVTOOLS_EXPERIMENTS_HOOK__ &&
+    window.__DEVTOOLS_EXPERIMENTS_HOOK__(helper);
+  /* eslint-enable */
 
   render(
-    <App
-      client={client}
-      helper={helper}
-    />,
+    <App client={client} helper={helper} />,
     document.getElementById('root'),
   );
 };
@@ -31,7 +30,8 @@ if (process.env.EXTENSION_ENV !== 'production') {
     // in order to run the App after the hook load
     window.addEventListener('message', ({ source, data: message }) => {
       const isSameSource = source === window;
-      const isFromExtensionLoader = message && message.source === 'chrome-devtools-experiments-loader';
+      const isFromExtensionLoader =
+        message && message.source === 'chrome-devtools-experiments-loader';
 
       if (isSameSource && isFromExtensionLoader) {
         run();

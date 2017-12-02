@@ -4,14 +4,19 @@ const state = {
 };
 
 const postMessageFromHook = event =>
-  window.postMessage({
-    source: 'chrome-devtools-experiments-hook',
-    ...event,
-  }, '*');
+  window.postMessage(
+    {
+      source: 'chrome-devtools-experiments-hook',
+      ...event,
+    },
+    '*',
+  );
 
 const onMessageFromDevTools = event => {
   const isSameSource = event.source === window;
-  const isFromExtension = event.data && event.data.source === 'chrome-devtools-experiments-content-script';
+  const isFromExtension =
+    event.data &&
+    event.data.source === 'chrome-devtools-experiments-content-script';
 
   if (isSameSource && isFromExtension) {
     const { type } = event.data;
