@@ -4,6 +4,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const ChromeExtensionReloader = require('webpack-chrome-extension-reloader');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -63,7 +64,7 @@ module.exports = () => {
     module: {
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.(j|t)s(x?)$/,
           exclude: /node_modules/,
           loaders: [
             {
@@ -106,6 +107,9 @@ module.exports = () => {
         },
       ],
     },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js'],
+    },
     plugins: clean([
       !isProduction && new WriteFilePlugin(),
       !isProduction && new ChromeExtensionReloader({
@@ -113,6 +117,10 @@ module.exports = () => {
           contentScript: 'contentScript',
           background: 'background',
         },
+      }),
+
+      new ForkTsCheckerWebpackPlugin({
+        async: false,
       }),
 
       new HtmlPlugin({
