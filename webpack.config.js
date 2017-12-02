@@ -130,7 +130,7 @@ module.exports = (options = {}) => {
       }),
 
       isProduction && new ExtractTextPlugin({
-        filename: '[name].[contenthash:8].css',
+        filename: '[name].css',
         allChunks: true,
       }),
 
