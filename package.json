@@ -7,7 +7,7 @@
     "prepare": "mkdir -p dist",
     "start:extension": "yarn clean && yarn prepare && yarn manifest && webpack-dev-server --inline --no-info",
     "start:example": "cd example && yarn start",
-    "build": "yarn clean && yarn prepare && yarn manifest && webpack --env.production",
+    "build": "yarn clean && yarn prepare && yarn manifest && NODE_ENV=production webpack",
     "manifest": "cp src/manifest.json dist/manifest.json",
     "test": "jest",
     "test:watch": "jest --watch"

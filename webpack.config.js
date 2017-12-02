@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const ChromeExtensionReloader = require('webpack-chrome-extension-reloader');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const clean = plugins =>
   plugins.filter(x => !!x);
 
@@ -22,9 +24,7 @@ const CSSLoaderConfiguration = isProduction => ({
   },
 });
 
-module.exports = (options = {}) => {
-  const isProduction = !!options.production;
-
+module.exports = () => {
   const hook = {
     hook: [
       `${__dirname}/src/polyfills.js`,
@@ -165,8 +165,9 @@ module.exports = (options = {}) => {
       },
       {
         ...configuration,
-        dependencies: ['hook'],
+        name: 'extension',
         entry: extension,
+        dependencies: ['hook'],
       },
     ];
   }
