@@ -59,9 +59,7 @@ module.exports = (options = {}) => {
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
     },
-    performance: !isProduction ? false : {
-      hints: 'warning',
-    },
+    performance: false,
     module: {
       loaders: [
         {
