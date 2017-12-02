@@ -117,8 +117,6 @@ module.exports = (options = {}) => {
         },
       }),
 
-      new webpack.optimize.ModuleConcatenationPlugin(),
-
       new HtmlPlugin({
         inject: true,
         template: 'src/panel/index.html',
