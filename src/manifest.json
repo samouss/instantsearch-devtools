@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "DevTools experiments",
+  "name": "InstantSearch DevTools ⚡️",
   "description": "DevTools experiments on Chrome",
   "version": "1.0",
   "devtools_page": "devtools.html",
