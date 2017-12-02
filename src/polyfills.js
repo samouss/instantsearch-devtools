@@ -1,4 +1,4 @@
 // Generic polyfill ex:
 // import 'whatwg-fetch';
 
-import 'babel-polyfill';
+import '@babel/polyfill';

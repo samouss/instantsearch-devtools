@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
         "browsers": [
           "last 2 versions",
@@ -8,15 +8,16 @@
         ],
       },
       "modules": false,
-      "useBuiltIns": true,
+      "useBuiltIns": "entry",
     }],
-    "react",
-    "stage-2",
+    "@babel/preset-react",
+    "@babel/preset-stage-2",
+    "@babel/preset-typescript",
   ],
   "env": {
     "test": {
       "plugins": [
-        "transform-es2015-modules-commonjs",
+        "@babel/plugin-transform-modules-commonjs",
       ],
     },
   },
