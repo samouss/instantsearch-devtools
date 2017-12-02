@@ -568,22 +568,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@types/chrome@0.0.54":
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.54.tgz#c971f1e8d57a82ae1f6232a09e839a37b50744e9"
-  dependencies:
-    "@types/filesystem" "*"
-
-"@types/filesystem@*":
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/@types/filesystem/-/filesystem-0.0.28.tgz#3fd7735830f2c7413cb5ac45780bc45904697b0e"
-  dependencies:
-    "@types/filewriter" "*"
-
-"@types/filewriter@*":
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
-
 "@types/node@*":
   version "8.0.51"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.51.tgz#b31d716fb8d58eeb95c068a039b9b6292817d5fb"
@@ -2309,6 +2293,12 @@ eslint-config-airbnb@16.1.0:
   dependencies:
     eslint-config-airbnb-base "^12.1.0"
 
+eslint-config-prettier@2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.9.0.tgz#5ecd65174d486c22dff389fe036febf502d468a3"
+  dependencies:
+    get-stdin "^5.0.1"
+
 eslint-import-resolver-node@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.1.tgz#4422574cde66a9a7b099938ee4d508a199e0e3cc"
@@ -2380,7 +2370,7 @@ eslint-plugin-jsx-a11y@6.0.2:
     emoji-regex "^6.1.0"
     jsx-ast-utils "^1.4.0"
 
-eslint-plugin-prettier@^2.2.0:
+eslint-plugin-prettier@2.3.1, eslint-plugin-prettier@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.3.1.tgz#e7a746c67e716f335274b88295a9ead9f544e44d"
   dependencies:
@@ -2903,6 +2893,10 @@ get-caller-file@^1.0.1:
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
+
+get-stdin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
 
 get-stream@^3.0.0:
   version "3.0.0"
