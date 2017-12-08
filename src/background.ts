@@ -1,10 +1,10 @@
 const connections = new Map();
 
-const isInteger = x => !Number.isNaN(parseInt(x, 10));
-const extractTabIdFromPort = port =>
-  (isInteger(port.name) ? parseInt(port.name, 10) : port.sender.tab.id);
+const isInteger = (x: string) => !Number.isNaN(parseInt(x, 10));
+const extractTabIdFromPort = (port: any) =>
+  isInteger(port.name) ? parseInt(port.name, 10) : port.sender.tab.id;
 
-const installContentScript = tabId => {
+const installContentScript = (tabId: number) => {
   chrome.tabs.executeScript(tabId, {
     file: './contentScript.js',
   });
@@ -13,10 +13,10 @@ const installContentScript = tabId => {
 // Setup the connection between:
 //  - contentScript -> background -> DevTools
 //  - DevTools -> background -> contentScript
-const createChannel = (connections, devtools, contentScript) => {
-  const devtoolsOnMessage = event => contentScript.postMessage(event);
-  const contentScriptOnMessage = event => devtools.postMessage(event);
-  const onDisconnect = port => {
+const createChannel = (connections: any, devtools: any, contentScript: any) => {
+  const devtoolsOnMessage = (event: any) => contentScript.postMessage(event);
+  const contentScriptOnMessage = (event: any) => devtools.postMessage(event);
+  const onDisconnect = (port: any) => {
     devtools.onMessage.removeListener(devtoolsOnMessage);
     contentScript.onMessage.removeListener(contentScriptOnMessage);
 
@@ -36,7 +36,7 @@ const createChannel = (connections, devtools, contentScript) => {
   contentScript.onDisconnect.addListener(onDisconnect);
 };
 
-chrome.runtime.onConnect.addListener(port => {
+chrome.runtime.onConnect.addListener((port: any) => {
   const isDevtoolsPort = isInteger(port.name);
   const tabId = extractTabIdFromPort(port);
   const tabName = isDevtoolsPort ? 'devtools' : 'contentScript';
