@@ -41,7 +41,7 @@
     "webpack-dev-server": "2.9.4"
   },
   "dependencies": {
-    "algoliasearch": "3.24.5",
+    "algoliasearch": "3.24.7",
     "algoliasearch-helper": "2.23.0",
     "prop-types": "15.6.0",
     "react": "16.0.0",
