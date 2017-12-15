@@ -1,5 +1,5 @@
 {
-  "name": "react-webpack-start",
+  "name": "instantsearch-devtools-example",
   "version": "1.0.0",
   "description": "Wepack React with Babel, CSS Modules, ESLint, Jest, Enzyme",
   "scripts": {
