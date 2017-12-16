@@ -3,6 +3,11 @@ module.exports = {
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
   },
-  setupFiles: ['./jest.polyfills.js', './jest.setup.js'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  setupFiles: ['<rootDir>/jest.polyfills.js', '<rootDir>/jest.setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  testMatch: ['**/__tests__/*.(ts|tsx|js|jsx)'],
+  transform: {
+    '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
+  },
 };
