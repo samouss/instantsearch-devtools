@@ -9,7 +9,7 @@
     "start:example": "cd example && yarn start",
     "build": "yarn clean && yarn prepare && yarn manifest && NODE_ENV=production webpack",
     "manifest": "cp src/manifest.json dist/manifest.json",
-    "test": "jest",
+    "test": "tsc --noEmit && jest",
     "test:watch": "jest --watch"
   },
   "repository": {
