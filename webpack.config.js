@@ -32,7 +32,7 @@ module.exports = () => {
   const extension = {
     background: [
       `${__dirname}/src/polyfills.js`,
-      `${__dirname}/src/background.ts`,
+      `${__dirname}/src/background/index.ts`,
     ],
     contentScript: [
       `${__dirname}/src/polyfills.js`,
