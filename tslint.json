@@ -11,6 +11,7 @@
   "rules": {
     "prettier": true,
     "interface-name": [true, "never-prefix"],
+    "interface-over-type-literal": false,
     "no-shadowed-variable": false,
     "ordered-imports": false
   }
