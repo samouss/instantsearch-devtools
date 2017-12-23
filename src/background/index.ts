@@ -1,3 +1,3 @@
 import run from './connections';
 
-run();
+run(chrome, new Map());

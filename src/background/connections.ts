@@ -1,3 +1,5 @@
+type Context = typeof chrome;
+
 type DevToolsPort = chrome.runtime.Port;
 type ContentScriptPort = chrome.runtime.Port & {
   sender: chrome.runtime.MessageSender & {
@@ -31,13 +33,13 @@ const extractTabIdFromPort = (
   return parseInt(port.name, 10);
 };
 
-const installContentScript = (tabId: number) => {
-  chrome.tabs.executeScript(tabId, {
+const installContentScript = (context: Context, tabId: number) => {
+  context.tabs.executeScript(tabId, {
     file: './contentScript.js',
   });
 };
 
-const channel = (
+const createChannel = (
   state: Connections,
   devTools: DevToolsPort,
   contentScript: ContentScriptPort,
@@ -70,7 +72,7 @@ const channel = (
   contentScript.onDisconnect.addListener(onDisconnect);
 };
 
-export const listener = (state: Connections) => {
+export const createListener = (context: Context, state: Connections) => {
   return (port: DevToolsPort | ContentScriptPort) => {
     const isContentScript = isContentScriptPort(port);
     const tabId = extractTabIdFromPort(port);
@@ -79,7 +81,7 @@ export const listener = (state: Connections) => {
       : 'contentScript';
 
     if (!isContentScript) {
-      installContentScript(tabId);
+      installContentScript(context, tabId);
     }
 
     state.set(tabId, {
@@ -92,15 +94,13 @@ export const listener = (state: Connections) => {
     const contentScriptConnection = connection && connection.contentScript;
 
     if (connection && devToolsConnection && contentScriptConnection) {
-      channel(state, devToolsConnection, contentScriptConnection);
+      createChannel(state, devToolsConnection, contentScriptConnection);
 
       contentScriptConnection.postMessage({ type: 'CONNECTION_READY' });
     }
   };
 };
 
-export default () => {
-  const state: Connections = new Map();
-
-  chrome.runtime.onConnect.addListener(listener(state));
+export default (context: Context, state: Connections) => {
+  chrome.runtime.onConnect.addListener(createListener(context, state));
 };
