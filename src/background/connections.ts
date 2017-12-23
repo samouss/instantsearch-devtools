@@ -87,7 +87,7 @@ export const createListener = (context: Context, state: Connections) => {
     if (connection && devToolsConnection && contentScriptConnection) {
       createChannel(state, devToolsConnection, contentScriptConnection);
 
-      contentScriptConnection.postMessage({ type: 'CONNECTION_READY' });
+      contentScriptConnection.postMessage({ type: 'CHANNEL_READY' });
     }
   };
 };

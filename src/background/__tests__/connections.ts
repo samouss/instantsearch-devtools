@@ -86,7 +86,7 @@ describe('connections', () => {
     );
 
     expect(contentScriptPort.postMessage).toHaveBeenCalledWith({
-      type: 'CONNECTION_READY',
+      type: 'CHANNEL_READY',
     });
   });
 
