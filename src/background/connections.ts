@@ -1,13 +1,4 @@
-type Context = typeof chrome;
-
-type DevToolsPort = chrome.runtime.Port;
-type ContentScriptPort = chrome.runtime.Port & {
-  sender: chrome.runtime.MessageSender & {
-    tab: chrome.tabs.Tab & {
-      id: number;
-    };
-  };
-};
+import { Context, DevToolsPort, ContentScriptPort } from '../types';
 
 type Connection = {
   devTools?: DevToolsPort;
