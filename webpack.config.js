@@ -36,7 +36,7 @@ module.exports = () => {
     ],
     contentScript: [
       `${__dirname}/src/polyfills.js`,
-      `${__dirname}/src/contentScript.js`,
+      `${__dirname}/src/contentScript/index.ts`,
     ],
     panel: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/panel/index.js`],
     devtools: `${__dirname}/src/devtools/index.js`,
