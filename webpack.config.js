@@ -41,8 +41,8 @@ module.exports = () => {
     panel: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/panel/index.js`],
     devtools: `${__dirname}/src/devtools/index.js`,
     loader: !isProduction
-      ? `${__dirname}/src/loader/development.js`
-      : `${__dirname}/src/loader/production.js`,
+      ? `${__dirname}/src/contentScript/hookLoaderDevelopment.ts`
+      : `${__dirname}/src/contentScript/hookLoaderProduction.ts`,
   };
 
   const babel = {
