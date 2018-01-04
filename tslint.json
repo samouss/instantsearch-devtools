@@ -12,7 +12,9 @@
     "prettier": true,
     "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": false,
+    "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
+    "no-submodule-imports": false,
     "object-literal-sort-keys": false,
     "ordered-imports": false
   }
