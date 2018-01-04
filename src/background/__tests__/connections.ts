@@ -1,75 +1,42 @@
+import * as chrome from 'test/chrome';
 import { createListener } from '../connections';
-
-const createFakeChromeEnvironment = (): any => ({
-  runtime: {
-    onConnect: {
-      addListener: jest.fn(),
-    },
-  },
-  tabs: {
-    executeScript: jest.fn(),
-  },
-});
-
-const createFakeEvent = (): any => ({
-  addListener: jest.fn(),
-  removeListener: jest.fn(),
-});
-
-const createFakeDevToolsPort = (tabId: number): any => ({
-  name: tabId.toString(),
-  postMessage: jest.fn(),
-  disconnect: jest.fn(),
-  onMessage: createFakeEvent(),
-  onDisconnect: createFakeEvent(),
-});
-
-const createFakeContentScriptPort = (tabId: number): any => ({
-  ...createFakeDevToolsPort(tabId),
-  name: 'contentScript',
-  sender: {
-    tab: {
-      id: tabId,
-    },
-  },
-});
 
 describe('connections', () => {
   it('expect to create a connection for the devTools', () => {
     const tabId = 150;
-    const chrome = createFakeChromeEnvironment();
-    const port = createFakeDevToolsPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const port = chrome.createFakeDevToolsPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(port);
+    createListener(context, state)(port);
 
     expect(state.get(tabId).devTools).toEqual(port);
-    expect(chrome.tabs.executeScript).toHaveBeenCalledWith(tabId, {
+    expect(context.tabs.executeScript).toHaveBeenCalledWith(tabId, {
       file: './contentScript.js',
     });
   });
 
   it('expect to create a connection for the contentScript', () => {
     const tabId = 150;
-    const chrome = createFakeChromeEnvironment();
-    const port = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const port = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(port);
+    createListener(context, state)(port);
 
     expect(state.get(tabId).contentScript).toEqual(port);
-    expect(chrome.tabs.executeScript).not.toHaveBeenCalled();
+    expect(context.tabs.executeScript).not.toHaveBeenCalled();
   });
 
   it('expect to create the channel between the devTools & contentScript', () => {
     const tabId = 150;
-    const chrome = createFakeChromeEnvironment();
-    const devToolsPort = createFakeDevToolsPort(tabId);
-    const contentScriptPort = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const devToolsPort = chrome.createFakeDevToolsPort(tabId);
+    const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(devToolsPort);
-    createListener(chrome, state)(contentScriptPort);
+    createListener(context, state)(devToolsPort);
+    createListener(context, state)(contentScriptPort);
 
     expect(devToolsPort.onMessage.addListener).toHaveBeenCalledWith(
       expect.any(Function),
@@ -92,13 +59,13 @@ describe('connections', () => {
 
   it('expect to destroy the channel between the devTools & contentScript on devTools disconnect', () => {
     const tabId = 150;
-    const chrome = createFakeChromeEnvironment();
-    const devToolsPort = createFakeDevToolsPort(tabId);
-    const contentScriptPort = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const devToolsPort = chrome.createFakeDevToolsPort(tabId);
+    const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(devToolsPort);
-    createListener(chrome, state)(contentScriptPort);
+    createListener(context, state)(devToolsPort);
+    createListener(context, state)(contentScriptPort);
 
     devToolsPort.onDisconnect.addListener.mock.calls[0][0](devToolsPort);
 
@@ -124,13 +91,13 @@ describe('connections', () => {
 
   it('expect to destroy the channel between the devTools & contentScript on contentScript disconnect', () => {
     const tabId = 150;
-    const chrome = createFakeChromeEnvironment();
-    const devToolsPort = createFakeDevToolsPort(tabId);
-    const contentScriptPort = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const devToolsPort = chrome.createFakeDevToolsPort(tabId);
+    const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(devToolsPort);
-    createListener(chrome, state)(contentScriptPort);
+    createListener(context, state)(devToolsPort);
+    createListener(context, state)(contentScriptPort);
 
     contentScriptPort.onDisconnect.addListener.mock.calls[0][0](
       contentScriptPort,
@@ -159,13 +126,13 @@ describe('connections', () => {
   it('expect to forward the message from devTools to contentScript', () => {
     const tabId = 150;
     const message = { source: 'devTools', receiver: 'contentScript' };
-    const chrome = createFakeChromeEnvironment();
-    const devToolsPort = createFakeDevToolsPort(tabId);
-    const contentScriptPort = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const devToolsPort = chrome.createFakeDevToolsPort(tabId);
+    const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(devToolsPort);
-    createListener(chrome, state)(contentScriptPort);
+    createListener(context, state)(devToolsPort);
+    createListener(context, state)(contentScriptPort);
 
     // Simulate the message devTools => contentScript
     devToolsPort.onMessage.addListener.mock.calls[0][0](message);
@@ -176,13 +143,13 @@ describe('connections', () => {
   it('expect to forward the message from contentScript to devTools', () => {
     const tabId = 150;
     const message = { source: 'contentScript', receiver: 'devTools' };
-    const chrome = createFakeChromeEnvironment();
-    const devToolsPort = createFakeDevToolsPort(tabId);
-    const contentScriptPort = createFakeContentScriptPort(tabId);
+    const context = chrome.createFakeChromeEnvironment();
+    const devToolsPort = chrome.createFakeDevToolsPort(tabId);
+    const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(chrome, state)(devToolsPort);
-    createListener(chrome, state)(contentScriptPort);
+    createListener(context, state)(devToolsPort);
+    createListener(context, state)(contentScriptPort);
 
     // Simulate the message contentScript => devTools
     contentScriptPort.onMessage.addListener.mock.calls[0][0](message);
