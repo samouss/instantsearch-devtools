@@ -69,7 +69,7 @@
     "typescript": "2.6.2",
     "webpack": "3.10.0",
     "webpack-chrome-extension-reloader": "0.6.2",
-    "webpack-dev-server": "2.9.7",
+    "webpack-dev-server": "2.10.0",
     "write-file-webpack-plugin": "4.2.0"
   },
   "dependencies": {
