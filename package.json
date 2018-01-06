@@ -27,7 +27,7 @@
     "@babel/preset-react": "7.0.0-beta.36",
     "@babel/preset-stage-2": "7.0.0-beta.36",
     "@babel/preset-typescript": "7.0.0-beta.36",
-    "@types/chrome": "0.0.57",
+    "@types/chrome": "0.0.58",
     "@types/jest": "22.0.1",
     "autoprefixer": "7.2.4",
     "babel-core": "7.0.0-bridge.0",
