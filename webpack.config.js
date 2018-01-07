@@ -26,19 +26,19 @@ const CSSLoaderConfiguration = isProduction => ({
 
 module.exports = () => {
   const hook = {
-    hook: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/hook/index.ts`],
+    hook: [`${__dirname}/src/polyfills.ts`, `${__dirname}/src/hook/index.ts`],
   };
 
   const extension = {
     background: [
-      `${__dirname}/src/polyfills.js`,
+      `${__dirname}/src/polyfills.ts`,
       `${__dirname}/src/background/index.ts`,
     ],
     contentScript: [
-      `${__dirname}/src/polyfills.js`,
+      `${__dirname}/src/polyfills.ts`,
       `${__dirname}/src/contentScript/index.ts`,
     ],
-    panel: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/panel/index.js`],
+    panel: [`${__dirname}/src/polyfills.ts`, `${__dirname}/src/panel/index.js`],
     devtools: `${__dirname}/src/devtools/index.ts`,
     loader: !isProduction
       ? `${__dirname}/src/contentScript/hookLoaderDevelopment.ts`
