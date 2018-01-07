@@ -26,7 +26,7 @@ const CSSLoaderConfiguration = isProduction => ({
 
 module.exports = () => {
   const hook = {
-    hook: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/hook/index.js`],
+    hook: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/hook/index.ts`],
   };
 
   const extension = {
