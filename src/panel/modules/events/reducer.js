@@ -14,7 +14,7 @@ const list = (state = [], action) => {
         id: v4(),
         type: 'CHANGE',
         time: Date.now(),
-        parameters: action.payload.parameters,
+        parameters: action.parameters,
       };
 
       return [item].concat(state);
@@ -25,7 +25,7 @@ const list = (state = [], action) => {
         id: v4(),
         type: 'SEARCH',
         time: Date.now(),
-        parameters: action.payload.parameters,
+        parameters: action.parameters,
       };
 
       return [item].concat(state);
@@ -36,8 +36,8 @@ const list = (state = [], action) => {
         id: v4(),
         type: 'RESULT',
         time: Date.now(),
-        parameters: action.payload.parameters,
-        results: action.payload.results,
+        parameters: action.parameters,
+        results: action.results,
       };
 
       return [item].concat(state);
@@ -52,7 +52,7 @@ const list = (state = [], action) => {
 const selected = (state = '', action) => {
   switch (action.type) {
     case actionTypes.EVENT_SELECT: {
-      return action.payload.id;
+      return action.id;
     }
 
     default: {
