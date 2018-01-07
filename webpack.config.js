@@ -39,7 +39,7 @@ module.exports = () => {
       `${__dirname}/src/contentScript/index.ts`,
     ],
     panel: [`${__dirname}/src/polyfills.js`, `${__dirname}/src/panel/index.js`],
-    devtools: `${__dirname}/src/devtools/index.js`,
+    devtools: `${__dirname}/src/devtools/index.ts`,
     loader: !isProduction
       ? `${__dirname}/src/contentScript/hookLoaderDevelopment.ts`
       : `${__dirname}/src/contentScript/hookLoaderProduction.ts`,
