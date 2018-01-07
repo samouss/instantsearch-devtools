@@ -1,4 +1,5 @@
-import createHook, { JSHelper } from './createHook';
+import { JSHelper } from '../types';
+import createHook from './createHook';
 
 type CustomWindow = Window & {
   __DEVTOOLS_EXPERIMENTS_HOOK__: (helper: JSHelper) => void;

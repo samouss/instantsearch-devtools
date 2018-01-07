@@ -1,4 +1,5 @@
-import createHook, { JSHelper } from '../createHook';
+import { JSHelper } from '../../types';
+import createHook from '../createHook';
 import createConnection from '../connection';
 
 jest.mock('../connection');
