@@ -1,24 +1,8 @@
-type ChangeEvent = {
-  type: 'CHANGE';
-  parameters: object;
-};
-
-type SearchEvent = {
-  type: 'SEARCH';
-  parameters: object;
-};
-
-type ResultsEvent = {
-  type: 'RESULT';
-  parameters: object;
-  results: object;
-};
-
-export type HookEvent = ChangeEvent | SearchEvent | ResultsEvent;
+import { ChannelEvent } from '../types';
 
 export type State = {
   isConnectionReady: boolean;
-  queue: HookEvent[];
+  queue: ChannelEvent[];
 };
 
 const intialState: State = {
@@ -26,7 +10,7 @@ const intialState: State = {
   queue: [],
 };
 
-const postMessageFromHook = (event: HookEvent) =>
+const postMessageFromHook = (event: ChannelEvent) =>
   window.postMessage(
     {
       source: 'chrome-devtools-experiments-hook',
@@ -54,7 +38,7 @@ const createHookConnection = (state = intialState) => {
     }
   });
 
-  const postMessageIfConnectionIsReady = (event: HookEvent) => {
+  const postMessageIfConnectionIsReady = (event: ChannelEvent) => {
     if (!state.isConnectionReady) {
       state.queue.push(event);
     } else {

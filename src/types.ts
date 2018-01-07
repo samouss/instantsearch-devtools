@@ -18,4 +18,24 @@ export type ChannelReadyEvent = {
   source: string;
 };
 
-export type ChannelEvent = ChannelReadyEvent;
+export type ChangeEvent = {
+  type: 'CHANGE';
+  parameters: object;
+};
+
+export type SearchEvent = {
+  type: 'SEARCH';
+  parameters: object;
+};
+
+export type ResultsEvent = {
+  type: 'RESULT';
+  parameters: object;
+  results: object;
+};
+
+export type ChannelEvent =
+  | ChannelReadyEvent
+  | ChangeEvent
+  | SearchEvent
+  | ResultsEvent;

@@ -1,4 +1,5 @@
-import createHookConnection, { State, HookEvent } from '../connection';
+import { ChangeEvent } from '../../types';
+import createHookConnection, { State } from '../connection';
 
 describe('connections', () => {
   const createFakeState = (next?: Partial<State>) => ({
@@ -116,7 +117,7 @@ describe('connections', () => {
         isConnectionReady: true,
       });
 
-      const event: HookEvent = {
+      const event: ChangeEvent = {
         type: 'CHANGE',
         parameters: {},
       };
@@ -132,7 +133,7 @@ describe('connections', () => {
 
     it('expect to queue the message when connection is not ready', () => {
       const state = createFakeState();
-      const event: HookEvent = {
+      const event: ChangeEvent = {
         type: 'CHANGE',
         parameters: {},
       };
