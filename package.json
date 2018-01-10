@@ -57,7 +57,7 @@
     "jest": "22.0.4",
     "postcss-loader": "2.0.10",
     "postcss-nested": "3.0.0",
-    "prettier": "1.9.2",
+    "prettier": "1.10.0",
     "raw-loader": "0.5.1",
     "react-test-renderer": "16.2.0",
     "style-loader": "0.19.1",
