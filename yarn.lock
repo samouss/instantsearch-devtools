@@ -7111,9 +7111,9 @@ tslint-plugin-prettier@1.3.0:
     eslint-plugin-prettier "^2.2.0"
     tslib "^1.7.1"
 
-tslint-react@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.3.3.tgz#06a6beb826645ab21d85339663a1295e107bc405"
+tslint-react@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.4.0.tgz#12ed3fc7063f3df988370206736b50acbce07e59"
   dependencies:
     tsutils "^2.13.1"
 
