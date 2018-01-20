@@ -1,62 +1,56 @@
-import { JSHelper } from '../../types';
-import createHook from '../createHook';
-import createConnection from '../connection';
+import { JSHelper, Bridge } from '../../types';
+import createHelperListeners from '../createHelperListeners';
 
-jest.mock('../connection');
-
-describe('createHook', () => {
+describe('createHelperListeners', () => {
   const createFakeHelper = (): JSHelper => ({
     on: jest.fn(),
   });
 
+  const createFakeBrige = (): Bridge => ({
+    postMessage: jest.fn(),
+    onMessage: jest.fn(),
+  });
+
   it('expect to listen for "change" event & post message', () => {
-    const postMessage = jest.fn();
+    const bridge = createFakeBrige();
     const helper = createFakeHelper();
     const parameters = {
       query: 'Apple',
     };
 
-    (createConnection as jest.Mock).mockImplementationOnce(() => ({
-      postMessage,
-    }));
-
-    createHook(helper);
+    createHelperListeners(bridge, helper);
 
     // Simulate change event
     (helper.on as jest.Mock).mock.calls[0][1](parameters);
 
     expect(helper.on).toHaveBeenCalledWith('change', expect.any(Function));
-    expect(postMessage).toHaveBeenCalledWith({
+    expect(bridge.postMessage).toHaveBeenCalledWith({
       type: 'CHANGE',
       parameters,
     });
   });
 
   it('expect to listen for "search" event & post message', () => {
-    const postMessage = jest.fn();
+    const bridge = createFakeBrige();
     const helper = createFakeHelper();
     const parameters = {
       query: 'Apple',
     };
 
-    (createConnection as jest.Mock).mockImplementationOnce(() => ({
-      postMessage,
-    }));
-
-    createHook(helper);
+    createHelperListeners(bridge, helper);
 
     // Simulate search event
     (helper.on as jest.Mock).mock.calls[1][1](parameters);
 
     expect(helper.on).toHaveBeenCalledWith('search', expect.any(Function));
-    expect(postMessage).toHaveBeenCalledWith({
+    expect(bridge.postMessage).toHaveBeenCalledWith({
       type: 'SEARCH',
       parameters,
     });
   });
 
-  it('expect to listen for "search" event & post message', () => {
-    const postMessage = jest.fn();
+  it('expect to listen for "result" event & post message', () => {
+    const bridge = createFakeBrige();
     const helper = createFakeHelper();
 
     const parameters = {
@@ -68,17 +62,13 @@ describe('createHook', () => {
       hits: [{ objectID: 123 }, { objectID: 456 }, { objectID: 789 }],
     };
 
-    (createConnection as jest.Mock).mockImplementationOnce(() => ({
-      postMessage,
-    }));
-
-    createHook(helper);
+    createHelperListeners(bridge, helper);
 
     // Simulate search event
     (helper.on as jest.Mock).mock.calls[2][1](results, parameters);
 
     expect(helper.on).toHaveBeenCalledWith('result', expect.any(Function));
-    expect(postMessage).toHaveBeenCalledWith({
+    expect(bridge.postMessage).toHaveBeenCalledWith({
       type: 'RESULT',
       parameters,
       results,
