@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import VisibleEventList from './containers/VisibleEventList';
 import VisibleEventDetail from './containers/VisibleEventDetail';
 import Layout from './components/Layout';
+import './index.css';
 
 const App = ({ store }) => (
   <Provider store={store}>
