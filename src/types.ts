@@ -13,6 +13,13 @@ export type JSHelper = {
   on(event: 'result', fn: (results: object, parameters: object) => void): void;
 };
 
+export type Bridge = {
+  postMessage(event: ChannelEvent): void;
+  onMessage(callback: (event: ChannelEvent) => void): void;
+};
+
+export type BridgeAdapter = () => Bridge;
+
 export type ChannelReadyEvent = {
   type: 'CHANNEL_READY';
   source: string;
