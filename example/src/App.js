@@ -10,13 +10,6 @@ import Hit from './Hit';
 
 const App = ({ client, helper }) => (
   <main>
-    <h1>
-      InstantSearch DevTools{' '}
-      <span role="img" aria-label="InstantSearch">
-        ⚡️
-      </span>
-    </h1>
-
     <InstantSearch
       indexName="bestbuy"
       algoliaClient={client}
