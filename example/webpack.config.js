@@ -10,9 +10,8 @@ const clean = plugins => plugins.filter(x => !!x);
 
 module.exports = () => ({
   devtool: 'cheap-module-source-map',
-  entry: `${__dirname}/index.js`,
+  entry: './example/index.js',
   output: {
-    path: `${__dirname}/dist`,
     publicPath: '/',
     filename: '[name].[chunkhash:8].js',
   },
@@ -88,7 +87,7 @@ module.exports = () => ({
 
     new HtmlPlugin({
       inject: true,
-      template: 'index.html',
+      template: './example/index.html',
     }),
 
     new webpack.DefinePlugin({
