@@ -7,6 +7,7 @@ import {
   Configure,
 } from 'react-instantsearch/dom';
 import Hit from './Hit';
+import './App.css';
 
 const App = ({ client, helper }) => (
   <main>
