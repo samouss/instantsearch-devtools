@@ -10,7 +10,8 @@
     "start:extension:example": "webpack-dev-server --config=example/webpack.config.js",
     "build": "echo 'Should be updated...'; exit 0;",
     "manifest": "echo 'Should be updated...'; exit 0;",
-    "test": "tsc --noEmit && jest",
+    "typecheck": "tsc --noEmit",
+    "test": "yarn typecheck && jest",
     "test:watch": "jest --watch"
   },
   "repository": {
