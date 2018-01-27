@@ -2,21 +2,21 @@ import { Bridge, JSHelper } from '../types';
 
 const createHelperListeners = (bridge: Bridge, helper: JSHelper) => {
   helper.on('change', parameters => {
-    bridge.postMessage({
+    bridge.emit({
       type: 'CHANGE',
       parameters,
     });
   });
 
   helper.on('search', parameters => {
-    bridge.postMessage({
+    bridge.emit({
       type: 'SEARCH',
       parameters,
     });
   });
 
   helper.on('result', (results, parameters) => {
-    bridge.postMessage({
+    bridge.emit({
       type: 'RESULT',
       parameters,
       results,

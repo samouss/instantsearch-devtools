@@ -11,14 +11,14 @@ describe('createHookBridge', () => {
     on: jest.fn(),
   });
 
-  const fakeBridgeAdapter = jest.fn<Bridge>(() => ({
-    postMessage: jest.fn(),
-    onMessage: jest.fn(),
+  const fakeBridgeAdapter = jest.fn((): Bridge => ({
+    connect: jest.fn(),
+    emit: jest.fn(),
   }));
 
   it('expect to create & bind the bridge to the listeners', () => {
     const bridge = {
-      onMessage: jest.fn(),
+      connect: jest.fn(),
     };
 
     fakeBridgeAdapter.mockImplementationOnce(() => bridge);
@@ -33,7 +33,7 @@ describe('createHookBridge', () => {
 
   it('expect to create & bind the bridge to the handler', () => {
     const bridge = {
-      onMessage: jest.fn(),
+      connect: jest.fn(),
     };
 
     fakeBridgeAdapter.mockImplementationOnce(() => bridge);
@@ -52,7 +52,7 @@ describe('createHookBridge', () => {
     hookBrigde(helper);
 
     // Simulate a message
-    bridge.onMessage.mock.calls[0][0]({
+    bridge.connect.mock.calls[0][0]({
       type: 'CHANGE',
       parameters: {},
     });

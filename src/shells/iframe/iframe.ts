@@ -4,7 +4,7 @@ import createApplicationBridge from '../../bridge/createApplicationBridge';
 const container = document.getElementById('root') as HTMLElement;
 
 const adapter = (): Bridge => ({
-  onMessage(fn) {
+  connect(fn) {
     // @TODO: think about a solution for this `any`
     window.addEventListener('message', event => {
       if (event.source === window.parent) {
@@ -12,7 +12,7 @@ const adapter = (): Bridge => ({
       }
     });
   },
-  postMessage() {
+  emit() {
     // TODO: to implement
   },
 });

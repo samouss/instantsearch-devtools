@@ -8,7 +8,7 @@ const createHookBridge = (adapter: BridgeAdapter) => (helper: JSHelper) => {
 
   createHelperListeners(bridge, helper);
 
-  bridge.onMessage(event => {
+  bridge.connect(event => {
     onMessageHelperHandler(event);
   });
 };

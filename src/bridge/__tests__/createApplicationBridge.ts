@@ -9,14 +9,14 @@ jest.mock('react-dom');
 jest.mock('../../application/store/configureStore');
 
 describe('createApplicationBridge', () => {
-  const fakeBridgeAdapter = jest.fn<Bridge>(() => ({
-    onMessage: jest.fn(),
-    postMessage: jest.fn(),
+  const fakeBridgeAdapter = jest.fn((): Bridge => ({
+    connect: jest.fn(),
+    emit: jest.fn(),
   }));
 
   it('expect to create & bind the bridge to the store', () => {
     const bridge = {
-      onMessage: jest.fn(),
+      connect: jest.fn(),
     };
 
     fakeBridgeAdapter.mockImplementationOnce(() => bridge);
@@ -32,7 +32,7 @@ describe('createApplicationBridge', () => {
     });
 
     // Simulate a message
-    bridge.onMessage.mock.calls[0][0]({
+    bridge.connect.mock.calls[0][0]({
       type: 'CHANGE',
       parameters: {},
     });

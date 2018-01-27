@@ -15,11 +15,11 @@ const adapter = (): Bridge => {
     document.querySelector('iframe') || document.createElement('iframe');
 
   return {
-    postMessage(event) {
-      iframe.contentWindow.postMessage(event, '*');
-    },
-    onMessage() {
+    connect() {
       // TODO: to implement
+    },
+    emit(event) {
+      iframe.contentWindow.postMessage(event, '*');
     },
   };
 };

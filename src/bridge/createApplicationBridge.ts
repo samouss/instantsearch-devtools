@@ -19,12 +19,12 @@ const createApplicationBridge = (
 
   const bridge = adapter();
 
-  bridge.onMessage(event => {
+  bridge.connect(event => {
     store.dispatch(event);
   });
 
   // emitter.addListener(event => {
-  //   bridge.postMessage(event);
+  //   bridge.emit(event);
   // });
 
   unmountComponentAtNode(container);

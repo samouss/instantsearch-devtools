@@ -13,9 +13,13 @@ export type JSHelper = {
   on(event: 'result', fn: (results: object, parameters: object) => void): void;
 };
 
+export type WindowWithDevTools = Window & {
+  __DEVTOOLS_EXPERIMENTS_HOOK__: (helper: JSHelper) => void;
+};
+
 export type Bridge = {
-  postMessage(event: ChannelEvent): void;
-  onMessage(callback: (event: ChannelEvent) => void): void;
+  connect(callback: (event: ChannelEvent) => void): void;
+  emit(event: ChannelEvent): void;
 };
 
 export type BridgeAdapter = () => Bridge;

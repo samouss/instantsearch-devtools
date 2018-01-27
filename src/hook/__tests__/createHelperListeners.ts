@@ -7,8 +7,8 @@ describe('createHelperListeners', () => {
   });
 
   const createFakeBrige = (): Bridge => ({
-    postMessage: jest.fn(),
-    onMessage: jest.fn(),
+    connect: jest.fn(),
+    emit: jest.fn(),
   });
 
   it('expect to listen for "change" event & post message', () => {
@@ -24,7 +24,7 @@ describe('createHelperListeners', () => {
     (helper.on as jest.Mock).mock.calls[0][1](parameters);
 
     expect(helper.on).toHaveBeenCalledWith('change', expect.any(Function));
-    expect(bridge.postMessage).toHaveBeenCalledWith({
+    expect(bridge.emit).toHaveBeenCalledWith({
       type: 'CHANGE',
       parameters,
     });
@@ -43,7 +43,7 @@ describe('createHelperListeners', () => {
     (helper.on as jest.Mock).mock.calls[1][1](parameters);
 
     expect(helper.on).toHaveBeenCalledWith('search', expect.any(Function));
-    expect(bridge.postMessage).toHaveBeenCalledWith({
+    expect(bridge.emit).toHaveBeenCalledWith({
       type: 'SEARCH',
       parameters,
     });
@@ -68,7 +68,7 @@ describe('createHelperListeners', () => {
     (helper.on as jest.Mock).mock.calls[2][1](results, parameters);
 
     expect(helper.on).toHaveBeenCalledWith('result', expect.any(Function));
-    expect(bridge.postMessage).toHaveBeenCalledWith({
+    expect(bridge.emit).toHaveBeenCalledWith({
       type: 'RESULT',
       parameters,
       results,
