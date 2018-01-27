@@ -1,14 +1,13 @@
-import { BridgeAdapter, JSHelper } from '../types';
+import { Adapter, JSHelper } from '../types';
 import createHelperListeners from '../hook/createHelperListeners';
 import createMessageHelperHandler from '../hook/createMessageHelperHandler';
 
-const createHookBridge = (adapter: BridgeAdapter) => (helper: JSHelper) => {
-  const bridge = adapter();
+const createHookBridge = (adapter: Adapter) => (helper: JSHelper) => {
   const onMessageHelperHandler = createMessageHelperHandler(helper);
 
-  createHelperListeners(bridge, helper);
+  createHelperListeners(adapter, helper);
 
-  bridge.connect(event => {
+  adapter.connect(event => {
     onMessageHelperHandler(event);
   });
 };

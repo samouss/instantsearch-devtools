@@ -17,12 +17,10 @@ export type WindowWithDevTools = Window & {
   __DEVTOOLS_EXPERIMENTS_HOOK__: (helper: JSHelper) => void;
 };
 
-export type Bridge = {
+export type Adapter = {
   connect(callback: (event: ChannelEvent) => void): void;
   emit(event: ChannelEvent): void;
 };
-
-export type BridgeAdapter = () => Bridge;
 
 export type ChannelReadyEvent = {
   type: 'CHANNEL_READY';

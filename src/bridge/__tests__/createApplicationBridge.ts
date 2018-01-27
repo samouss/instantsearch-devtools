@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import { Bridge } from '../../types';
+import { Adapter } from '../../types';
 import configureStore from '../../application/store/configureStore';
 import createApplicationBridge from '../createApplicationBridge';
 
@@ -9,17 +9,13 @@ jest.mock('react-dom');
 jest.mock('../../application/store/configureStore');
 
 describe('createApplicationBridge', () => {
-  const fakeBridgeAdapter = jest.fn((): Bridge => ({
+  const createFakeAdapter = (): Adapter => ({
     connect: jest.fn(),
     emit: jest.fn(),
-  }));
+  });
 
   it('expect to create & bind the bridge to the store', () => {
-    const bridge = {
-      connect: jest.fn(),
-    };
-
-    fakeBridgeAdapter.mockImplementationOnce(() => bridge);
+    const adapter = createFakeAdapter();
 
     const store = {
       dispatch: jest.fn(),
@@ -27,12 +23,12 @@ describe('createApplicationBridge', () => {
 
     (configureStore as jest.Mock).mockImplementationOnce(() => store);
 
-    createApplicationBridge(fakeBridgeAdapter, {
+    createApplicationBridge(adapter, {
       container: document.createElement('div'),
     });
 
     // Simulate a message
-    bridge.connect.mock.calls[0][0]({
+    (adapter.connect as jest.Mock).mock.calls[0][0]({
       type: 'CHANGE',
       parameters: {},
     });
@@ -45,10 +41,11 @@ describe('createApplicationBridge', () => {
 
   it('expect to unmount & render the application', () => {
     const container = document.createElement('div');
+    const adapter = createFakeAdapter();
 
     (createElement as jest.Mock).mockImplementationOnce(x => x);
 
-    createApplicationBridge(fakeBridgeAdapter, {
+    createApplicationBridge(adapter, {
       container,
     });
 

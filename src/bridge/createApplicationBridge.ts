@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import { BridgeAdapter } from '../types';
+import { Adapter } from '../types';
 import configureStore from '../application/store/configureStore';
 import App from '../application/App';
 import '../application/index.css';
@@ -9,22 +9,18 @@ type Configuration = {
   container: Element;
 };
 
-const createApplicationBridge = (
-  adapter: BridgeAdapter,
-  { container }: Configuration,
-) => {
+const createApplicationBridge = (adapter: Adapter, params: Configuration) => {
+  const { container } = params;
   // const emmiter = createEmitter ...
   // const store = configureStore({ emitter });
   const store = configureStore();
 
-  const bridge = adapter();
-
-  bridge.connect(event => {
+  adapter.connect(event => {
     store.dispatch(event);
   });
 
   // emitter.addListener(event => {
-  //   bridge.emit(event);
+  //   adapter.emit(event);
   // });
 
   unmountComponentAtNode(container);

@@ -1,22 +1,22 @@
-import { Bridge, JSHelper } from '../types';
+import { Adapter, JSHelper } from '../types';
 
-const createHelperListeners = (bridge: Bridge, helper: JSHelper) => {
+const createHelperListeners = (adapter: Adapter, helper: JSHelper) => {
   helper.on('change', parameters => {
-    bridge.emit({
+    adapter.emit({
       type: 'CHANGE',
       parameters,
     });
   });
 
   helper.on('search', parameters => {
-    bridge.emit({
+    adapter.emit({
       type: 'SEARCH',
       parameters,
     });
   });
 
   helper.on('result', (results, parameters) => {
-    bridge.emit({
+    adapter.emit({
       type: 'RESULT',
       parameters,
       results,
