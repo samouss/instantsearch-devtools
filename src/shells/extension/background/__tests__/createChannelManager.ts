@@ -1,14 +1,14 @@
 import * as chrome from 'test/chrome';
-import { createListener } from '../connections';
+import createChannelManager from '../createChannelManager';
 
-describe('connections', () => {
-  it('expect to create a connection for the devTools', () => {
+describe('createChannelManager', () => {
+  it('expect to create a port for the devTools', () => {
     const tabId = 150;
     const context = chrome.createFakeChromeEnvironment();
     const port = chrome.createFakeDevToolsPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(port);
+    createChannelManager(context, state)(port);
 
     expect(state.get(tabId).devTools).toEqual(port);
     expect(context.tabs.executeScript).toHaveBeenCalledWith(tabId, {
@@ -16,13 +16,13 @@ describe('connections', () => {
     });
   });
 
-  it('expect to create a connection for the contentScript', () => {
+  it('expect to create a port for the contentScript', () => {
     const tabId = 150;
     const context = chrome.createFakeChromeEnvironment();
     const port = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(port);
+    createChannelManager(context, state)(port);
 
     expect(state.get(tabId).contentScript).toEqual(port);
     expect(context.tabs.executeScript).not.toHaveBeenCalled();
@@ -35,8 +35,8 @@ describe('connections', () => {
     const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(devToolsPort);
-    createListener(context, state)(contentScriptPort);
+    createChannelManager(context, state)(devToolsPort);
+    createChannelManager(context, state)(contentScriptPort);
 
     expect(devToolsPort.onMessage.addListener).toHaveBeenCalledWith(
       expect.any(Function),
@@ -64,8 +64,8 @@ describe('connections', () => {
     const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(devToolsPort);
-    createListener(context, state)(contentScriptPort);
+    createChannelManager(context, state)(devToolsPort);
+    createChannelManager(context, state)(contentScriptPort);
 
     devToolsPort.onDisconnect.addListener.mock.calls[0][0](devToolsPort);
 
@@ -96,8 +96,8 @@ describe('connections', () => {
     const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(devToolsPort);
-    createListener(context, state)(contentScriptPort);
+    createChannelManager(context, state)(devToolsPort);
+    createChannelManager(context, state)(contentScriptPort);
 
     contentScriptPort.onDisconnect.addListener.mock.calls[0][0](
       contentScriptPort,
@@ -131,8 +131,8 @@ describe('connections', () => {
     const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(devToolsPort);
-    createListener(context, state)(contentScriptPort);
+    createChannelManager(context, state)(devToolsPort);
+    createChannelManager(context, state)(contentScriptPort);
 
     // Simulate the message devTools => contentScript
     devToolsPort.onMessage.addListener.mock.calls[0][0](message);
@@ -148,8 +148,8 @@ describe('connections', () => {
     const contentScriptPort = chrome.createFakeContentScriptPort(tabId);
     const state = new Map();
 
-    createListener(context, state)(devToolsPort);
-    createListener(context, state)(contentScriptPort);
+    createChannelManager(context, state)(devToolsPort);
+    createChannelManager(context, state)(contentScriptPort);
 
     // Simulate the message contentScript => devTools
     contentScriptPort.onMessage.addListener.mock.calls[0][0](message);

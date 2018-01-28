@@ -1,12 +1,11 @@
-import { Context, DevToolsPort, ContentScriptPort } from '../types';
+import { Context, DevToolsPort, ContentScriptPort } from '../../../types';
 
-type Connection = {
+type Tunnel = {
   devTools?: DevToolsPort;
   contentScript?: ContentScriptPort;
 };
 
-type ConnectionTypes = keyof Connection;
-type Connections = Map<number, Connection>;
+type State = Map<number, Tunnel>;
 
 const isContentScriptPort = (
   port: DevToolsPort | ContentScriptPort,
@@ -30,22 +29,20 @@ const installContentScript = (context: Context, tabId: number) => {
   });
 };
 
-const createChannel = (
-  state: Connections,
+const createTunnelChannel = (
+  state: State,
   devTools: DevToolsPort,
   contentScript: ContentScriptPort,
 ) => {
-  const onDevToolsMessagePostToContentScript = (event: object) =>
+  const onMessageFromDevTools = (event: object) =>
     contentScript.postMessage(event);
 
-  const onContentScriptMessagePostToDevTools = (event: object) =>
+  const onMessageFromContentScript = (event: object) =>
     devTools.postMessage(event);
 
   const onDisconnect = (port: DevToolsPort | ContentScriptPort) => {
-    devTools.onMessage.removeListener(onDevToolsMessagePostToContentScript);
-    contentScript.onMessage.removeListener(
-      onContentScriptMessagePostToDevTools,
-    );
+    devTools.onMessage.removeListener(onMessageFromDevTools);
+    contentScript.onMessage.removeListener(onMessageFromContentScript);
 
     devTools.onDisconnect.removeListener(onDisconnect);
     contentScript.onDisconnect.removeListener(onDisconnect);
@@ -56,18 +53,21 @@ const createChannel = (
     state.delete(extractTabIdFromPort(port));
   };
 
-  devTools.onMessage.addListener(onDevToolsMessagePostToContentScript);
-  contentScript.onMessage.addListener(onContentScriptMessagePostToDevTools);
+  devTools.onMessage.addListener(onMessageFromDevTools);
+  contentScript.onMessage.addListener(onMessageFromContentScript);
 
   devTools.onDisconnect.addListener(onDisconnect);
   contentScript.onDisconnect.addListener(onDisconnect);
 };
 
-export const createListener = (context: Context, state: Connections) => {
+const createChannelManager = (
+  context: Context = chrome,
+  state: State = new Map(),
+) => {
   return (port: DevToolsPort | ContentScriptPort) => {
     const isContentScript = isContentScriptPort(port);
     const tabId = extractTabIdFromPort(port);
-    const tabName: ConnectionTypes = !isContentScript
+    const tabName: keyof Tunnel = !isContentScript
       ? 'devTools'
       : 'contentScript';
 
@@ -80,18 +80,17 @@ export const createListener = (context: Context, state: Connections) => {
       [tabName]: port,
     });
 
-    const connection = state.get(tabId);
-    const devToolsConnection = connection && connection.devTools;
-    const contentScriptConnection = connection && connection.contentScript;
+    const tunnel = state.get(tabId);
+    const devToolsPort = tunnel && tunnel.devTools;
+    const contentScriptPort = tunnel && tunnel.contentScript;
 
-    if (connection && devToolsConnection && contentScriptConnection) {
-      createChannel(state, devToolsConnection, contentScriptConnection);
+    if (tunnel && devToolsPort && contentScriptPort) {
+      createTunnelChannel(state, devToolsPort, contentScriptPort);
 
-      contentScriptConnection.postMessage({ type: 'CHANNEL_READY' });
+      // @TODO: rename to Tunnel
+      contentScriptPort.postMessage({ type: 'CHANNEL_READY' });
     }
   };
 };
 
-export default (context: Context, state: Connections) => {
-  chrome.runtime.onConnect.addListener(createListener(context, state));
-};
+export default createChannelManager;
