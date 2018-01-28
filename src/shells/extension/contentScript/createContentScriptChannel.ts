@@ -1,11 +1,11 @@
-import { Context } from '../types';
+import { Context } from '../../../types';
 
-const run = (context: Context) => {
+const createContentScriptChannel = (context: Context = chrome) => {
   const port = context.runtime.connect({
     name: 'contentScript',
   });
 
-  // @NOTE: exeplicit cast the event, remove when the definition
+  // @NOTE: explicitlty cast the event, remove when the definition
   // will be rewrite. Should really do it
   const onMessageFromDevTools = (event: object) => {
     window.postMessage(
@@ -42,4 +42,4 @@ const run = (context: Context) => {
   window.addEventListener('message', onMessageFromPage);
 };
 
-export default run;
+export default createContentScriptChannel;

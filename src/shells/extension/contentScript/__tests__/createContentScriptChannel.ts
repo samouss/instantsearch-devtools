@@ -1,7 +1,7 @@
 import * as chrome from 'test/chrome';
-import run from '../connections';
+import createContentScriptChannel from '../createContentScriptChannel';
 
-describe('connections', () => {
+describe('createContentScriptChannel', () => {
   it('expect to create a connection', () => {
     const tabId = 150;
     const context = chrome.createFakeChromeEnvironment();
@@ -11,7 +11,7 @@ describe('connections', () => {
 
     context.runtime.connect.mockImplementation(() => port);
 
-    run(context);
+    createContentScriptChannel(context);
 
     expect(context.runtime.connect).toHaveBeenCalledWith({
       name: 'contentScript',
@@ -40,7 +40,7 @@ describe('connections', () => {
 
     context.runtime.connect.mockImplementation(() => port);
 
-    run(context);
+    createContentScriptChannel(context);
 
     // Simulate the message devTools => hook
     port.onDisconnect.addListener.mock.calls[0][0](port);
@@ -71,7 +71,7 @@ describe('connections', () => {
 
     context.runtime.connect.mockImplementation(() => port);
 
-    run(context);
+    createContentScriptChannel(context);
 
     // Simulate the message devTools => hook
     port.onMessage.addListener.mock.calls[0][0](message);
@@ -101,7 +101,7 @@ describe('connections', () => {
 
     context.runtime.connect.mockImplementation(() => port);
 
-    run(context);
+    createContentScriptChannel(context);
 
     // Simulate the message hook => devTools
     (window.addEventListener as jest.Mock).mock.calls[0][1](event);
@@ -125,7 +125,7 @@ describe('connections', () => {
 
     context.runtime.connect.mockImplementation(() => port);
 
-    run(context);
+    createContentScriptChannel(context);
 
     // Simulate the message hook => devTools
     (window.addEventListener as jest.Mock).mock.calls[0][1](event);
