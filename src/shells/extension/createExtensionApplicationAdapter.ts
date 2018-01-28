@@ -10,7 +10,9 @@ const createExtensionApplicationAdapter = (context: Context = chrome): Adapter =
 
   return {
     connect(fn) {
-      port.onMessage.addListener(fn);
+      // @NOTE: exeplicit cast the event, remove when the definition
+      // will be rewrite. Should really do it
+      port.onMessage.addListener((event: any) => fn(event));
     },
     emit() {
       // TODO: to implement

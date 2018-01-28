@@ -40,9 +40,10 @@ describe('createExtensionApplicationAdapter', () => {
   describe('connect', () => {
     it('expect to create a onMessage listener', () => {
       const tabId = 15;
-      const listener = () => null;
+      const listener = jest.fn();
       const context = chrome.createFakeChromeEnvironment();
       const port = chrome.createFakeDevToolsPort(tabId);
+      const event = { type: 'CHANGE' };
 
       context.devtools.inspectedWindow.tabId = tabId;
       context.runtime.connect.mockImplementationOnce(() => port);
@@ -51,7 +52,10 @@ describe('createExtensionApplicationAdapter', () => {
 
       adapter.connect(listener);
 
-      expect(port.onMessage.addListener).toHaveBeenCalledWith(listener);
+      // Simulate event
+      port.onMessage.addListener.mock.calls[0][0](event);
+
+      expect(listener).toHaveBeenCalledWith(event);
     });
   });
 
