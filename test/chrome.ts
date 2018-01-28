@@ -1,7 +1,7 @@
 // @NOTE: exeplicit cast the event, remove when the definition
 // will be rewrite. Should really do it
 
-export const createFakeChromeEnvironment = (): any => ({
+export const createFakeChromeEnvironment = (tabId: number = 10): any => ({
   runtime: {
     connect: jest.fn(),
     onConnect: {
@@ -10,6 +10,11 @@ export const createFakeChromeEnvironment = (): any => ({
   },
   tabs: {
     executeScript: jest.fn(),
+  },
+  devtools: {
+    inspectedWindow: {
+      tabId,
+    },
   },
 });
 
