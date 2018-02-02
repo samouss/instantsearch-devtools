@@ -25,24 +25,28 @@ const CSSLoaderConfiguration = isProduction => ({
 });
 
 module.exports = () => {
-  const hook = {
-    hook: [`${__dirname}/src/polyfills.ts`, `${__dirname}/src/hook/index.ts`],
+  const inject = {
+    inject: ['./src/polyfills.ts', './src/shells/extension/inject.ts'],
   };
 
+  // prettier-ignore
   const extension = {
     background: [
-      `${__dirname}/src/polyfills.ts`,
-      `${__dirname}/src/background/index.ts`,
+      './src/polyfills.ts',
+      './src/shells/extension/background/index.ts',
     ],
     contentScript: [
-      `${__dirname}/src/polyfills.ts`,
-      `${__dirname}/src/contentScript/index.ts`,
+      './src/polyfills.ts',
+      './src/shells/extension/contentScript/index.ts',
     ],
-    panel: [`${__dirname}/src/polyfills.ts`, `${__dirname}/src/panel/index.js`],
-    devtools: `${__dirname}/src/devtools/index.ts`,
+    application: [
+      './src/polyfills.ts',
+      './src/shells/extension/index.ts',
+    ],
+    devtools: './src/shells/extension/devtools/index.ts',
     loader: !isProduction
-      ? `${__dirname}/src/contentScript/hookLoaderDevelopment.ts`
-      : `${__dirname}/src/contentScript/hookLoaderProduction.ts`,
+      ? './src/shells/extension/injectLoader/injectLoaderDevelopment.ts'
+      : './src/shells/extension/injectLoader/injectLoaderProduction.ts',
   };
 
   const babel = {
@@ -62,11 +66,11 @@ module.exports = () => {
   const configuration = {
     devtool: !isProduction ? 'cheap-module-source-map' : 'source-map',
     output: {
-      path: `${__dirname}/dist`,
+      path: path.join(__dirname, '..', '..', '..', 'dist'),
       filename: '[name].js',
     },
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: './dist',
     },
     performance: false,
     module: {
@@ -132,15 +136,15 @@ module.exports = () => {
 
       new HtmlPlugin({
         inject: true,
-        template: 'src/panel/index.html',
-        filename: `${__dirname}/dist/panel.html`,
-        chunks: ['panel'],
+        template: './src/shells/extension/index.html',
+        filename: './application.html',
+        chunks: ['application'],
       }),
 
       new HtmlPlugin({
         inject: true,
-        template: 'src/devtools/index.html',
-        filename: `${__dirname}/dist/devtools.html`,
+        template: './src/shells/extension/devtools/index.html',
+        filename: './devtools.html',
         chunks: ['devtools'],
       }),
 
@@ -152,9 +156,7 @@ module.exports = () => {
 
       isProduction &&
         new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('production'),
-          },
+          'process.env.NODE_ENV': JSON.stringify('production'),
         }),
 
       isProduction &&
@@ -178,14 +180,14 @@ module.exports = () => {
     return [
       {
         ...configuration,
-        name: 'hook',
-        entry: hook,
+        name: 'inject',
+        entry: inject,
       },
       {
         ...configuration,
         name: 'extension',
         entry: extension,
-        dependencies: ['hook'],
+        dependencies: ['inject'],
       },
     ];
   }
@@ -193,7 +195,7 @@ module.exports = () => {
   return {
     ...configuration,
     entry: {
-      ...hook,
+      ...inject,
       ...extension,
     },
   };

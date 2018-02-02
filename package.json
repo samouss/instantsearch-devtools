@@ -6,12 +6,11 @@
     "clean": "rm -rf dist",
     "prepare": "mkdir -p dist",
     "start:iframe": "webpack-dev-server --config=src/shells/iframe/webpack.config.js",
-    "start:extension:application": "echo 'Should be updated...'; exit 0;",
+    "start:extension:application": "yarn clean && yarn prepare && yarn manifest && webpack-dev-server --inline --no-info --config=src/shells/extension/webpack.config.js",
     "start:extension:example": "webpack-dev-server --config=example/webpack.config.js",
-    "build": "echo 'Should be updated...'; exit 0;",
-    "manifest": "echo 'Should be updated...'; exit 0;",
-    "typecheck": "tsc --noEmit",
-    "test": "yarn typecheck && jest",
+    "build": "yarn clean && yarn prepare && yarn manifest && NODE_ENV=production webpack --config=src/shells/extension/webpack.config.js",
+    "manifest": "cp src/shells/extension/manifest.json dist/manifest.json",
+    "test": "yarn tsc && jest",
     "test:watch": "jest --watch"
   },
   "repository": {
