@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -23,6 +24,7 @@ module.exports = () => {
       iframe: ['./src/polyfills.ts', './src/shells/iframe/iframe.ts'],
     },
     output: {
+      path: path.join(__dirname, '..', '..', '..', 'dist'),
       filename: '[name].js',
     },
     performance: false,
