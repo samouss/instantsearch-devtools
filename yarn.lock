@@ -3095,6 +3095,16 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flufykin@4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/flufykin/-/flufykin-4.5.2.tgz#20548d4764183a8688231382bb0654e607de4f5f"
+  dependencies:
+    algoliasearch "^3.24.0"
+    algoliasearch-helper "^2.21.0"
+    classnames "^2.2.5"
+    lodash "^4.17.4"
+    prop-types "^15.5.10"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -6124,15 +6134,6 @@ react-dom@16.2.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
-
-"react-instantsearch@file:../custom-helper-react-instantsearch/packages/react-instantsearch/dist":
-  version "4.2.0"
-  dependencies:
-    algoliasearch "^3.24.0"
-    algoliasearch-helper "^2.21.0"
-    classnames "^2.2.5"
-    lodash "^4.17.4"
-    prop-types "^15.5.10"
 
 react-json-tree@0.11.0:
   version "0.11.0"

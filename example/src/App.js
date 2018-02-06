@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  InstantSearch,
-  SearchBox,
-  Hits,
-  Configure,
-} from 'react-instantsearch/dom';
+import { InstantSearch, SearchBox, Hits, Configure } from 'flufykin/dom';
 import Hit from './Hit';
 import './App.css';
 
