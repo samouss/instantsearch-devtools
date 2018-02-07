@@ -78,7 +78,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.39",
-    "algoliasearch": "3.24.9",
+    "algoliasearch": "3.24.10",
     "algoliasearch-helper": "2.23.2",
     "flufykin": "4.5.2",
     "luxon": "0.4.0",
