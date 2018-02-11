@@ -16,8 +16,8 @@ const onIframeLoaded = () => {
 
   // This step is useless but we keep it for the constistency, performing
   // the side effect on the window page like in a real application
-  (window as WindowWithDevTools).__DEVTOOLS_EXPERIMENTS_HOOK__ = bridge;
-  (window as WindowWithDevTools).__DEVTOOLS_EXPERIMENTS_HOOK__(helper);
+  (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__ = bridge;
+  (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__(helper);
 
   render(
     <App client={client} helper={helper} />,

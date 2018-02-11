@@ -14,7 +14,7 @@ export type JSHelper = {
 };
 
 export type WindowWithDevTools = Window & {
-  __DEVTOOLS_EXPERIMENTS_HOOK__: (helper: JSHelper) => void;
+  __INSTANT_SEARCH_DEVTOOLS__: (helper: JSHelper) => void;
 };
 
 export type Adapter = {

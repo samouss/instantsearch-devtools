@@ -9,8 +9,8 @@ const helper = algoliasearchHelper(client, 'bestbuy');
 
 const run = () => {
   /* eslint-disable no-underscore-dangle, no-unused-expressions */
-  window.__DEVTOOLS_EXPERIMENTS_HOOK__ &&
-    window.__DEVTOOLS_EXPERIMENTS_HOOK__(helper);
+  window.__INSTANT_SEARCH_DEVTOOLS__ &&
+    window.__INSTANT_SEARCH_DEVTOOLS__(helper);
   /* eslint-enable */
 
   render(
@@ -21,7 +21,7 @@ const run = () => {
 
 if (process.env.EXTENSION_ENV !== 'production') {
   // eslint-disable-next-line
-  const isHookAlreadyLoaded = !!window.__DEVTOOLS_EXPERIMENTS_HOOK__;
+  const isHookAlreadyLoaded = !!window.__INSTANT_SEARCH_DEVTOOLS__;
 
   if (!isHookAlreadyLoaded) {
     // The hook could be laad before the page but it could be load after only
