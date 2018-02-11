@@ -1,4 +1,5 @@
 import * as chrome from 'test/chrome';
+import * as NAMESPACES from '../../../../constants';
 import createContentScriptChannel from '../createContentScriptChannel';
 
 describe('createContentScriptChannel', () => {
@@ -79,7 +80,7 @@ describe('createContentScriptChannel', () => {
     expect(window.postMessage).toHaveBeenCalledWith(
       {
         ...message,
-        source: 'chrome-devtools-experiments-content-script',
+        source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
       },
       '*',
     );
@@ -92,7 +93,7 @@ describe('createContentScriptChannel', () => {
     const event = {
       source: window,
       data: {
-        source: 'chrome-devtools-experiments-hook',
+        source: NAMESPACES.HOOK_NAMESPACE,
         receiver: 'devTools',
       },
     };

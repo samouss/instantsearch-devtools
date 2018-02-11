@@ -1,4 +1,5 @@
 import { ChangeEvent } from '../../../types';
+import * as NAMESPACES from '../../../constants';
 import createExtensionHookAdapter, {
   State,
 } from '../createExtensionHookAdapter';
@@ -33,7 +34,7 @@ describe('createExtensionHookAdapter', () => {
       const event = {
         source: window,
         data: {
-          source: 'chrome-devtools-experiments-content-script',
+          source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
           type: 'CHANNEL_READY',
         },
       };
@@ -62,7 +63,7 @@ describe('createExtensionHookAdapter', () => {
       const event = {
         source: window,
         data: {
-          source: 'chrome-devtools-experiments-content-script',
+          source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
           type: 'CHANNEL_READY',
         },
       };
@@ -87,7 +88,7 @@ describe('createExtensionHookAdapter', () => {
       const event = {
         source: { ...window },
         data: {
-          source: 'chrome-devtools-experiments-content-script',
+          source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
           type: 'CHANNEL_READY',
         },
       };

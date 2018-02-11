@@ -29,8 +29,10 @@ if (process.env.EXTENSION_ENV !== 'production') {
     // in order to run the App after the hook load
     window.addEventListener('message', ({ source, data: message }) => {
       const isSameSource = source === window;
+      // @TODO: replace with the constant when the example
+      // will be written with TypeScript
       const isFromExtensionLoader =
-        message && message.source === 'chrome-devtools-experiments-loader';
+        message && message.source === 'instantsearch-devtools-loader';
 
       if (isSameSource && isFromExtensionLoader) {
         run();

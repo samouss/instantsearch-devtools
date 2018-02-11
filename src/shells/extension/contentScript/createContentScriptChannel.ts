@@ -1,4 +1,5 @@
 import { Context } from '../../../types';
+import * as NAMESPACES from '../../../constants';
 
 const createContentScriptChannel = (context: Context = chrome) => {
   const port = context.runtime.connect({
@@ -11,7 +12,7 @@ const createContentScriptChannel = (context: Context = chrome) => {
     window.postMessage(
       {
         ...event,
-        source: 'chrome-devtools-experiments-content-script',
+        source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
       },
       '*',
     );
@@ -20,7 +21,7 @@ const createContentScriptChannel = (context: Context = chrome) => {
   const onMessageFromPage = ({ source, data: message }: MessageEvent) => {
     const isSameSource = source === window;
     const isFromExtension =
-      message && message.source === 'chrome-devtools-experiments-hook';
+      message && message.source === NAMESPACES.HOOK_NAMESPACE;
 
     if (isSameSource && isFromExtension) {
       // @NOTE: exeplicit cast the event, remove when the definition

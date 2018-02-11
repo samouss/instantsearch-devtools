@@ -1,4 +1,5 @@
 import { Adapter, ChannelEvent } from '../../types';
+import * as NAMESPACES from '../../constants';
 
 export type State = {
   isReady: boolean;
@@ -14,7 +15,7 @@ const createExtensionHookAdapter = (state = intialState): Adapter => {
   const emit = (event: ChannelEvent) =>
     window.postMessage(
       {
-        source: 'chrome-devtools-experiments-hook',
+        source: NAMESPACES.HOOK_NAMESPACE,
         ...event,
       },
       '*',
@@ -26,7 +27,7 @@ const createExtensionHookAdapter = (state = intialState): Adapter => {
         const isSameSource = event.source === window;
         const isFromExtension =
           event.data &&
-          event.data.source === 'chrome-devtools-experiments-content-script';
+          event.data.source === NAMESPACES.CONTENT_SCRIPT_NAMESPACE;
 
         if (isSameSource && isFromExtension) {
           const { type } = event.data;
