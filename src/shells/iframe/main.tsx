@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import algoliasearch from 'algoliasearch/lite';
 import algoliasearchHelper from 'algoliasearch-helper';
-import App from '../../../example/src/App';
+import App from '../../example/src/App';
 import { WindowWithDevTools } from '../../types';
 import createHookBridge from '../../bridge/createHookBridge';
 import createIframeHookAdapter from './createIframeHookAdapter';

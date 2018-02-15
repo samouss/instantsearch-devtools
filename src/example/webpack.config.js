@@ -10,7 +10,7 @@ const clean = plugins => plugins.filter(x => !!x);
 
 module.exports = () => ({
   devtool: 'cheap-module-source-map',
-  entry: './example/index.js',
+  entry: './src/example/index.js',
   output: {
     publicPath: '/',
     filename: '[name].[chunkhash:8].js',
@@ -38,7 +38,7 @@ module.exports = () => ({
           {
             loader: 'eslint-loader',
             options: {
-              configFile: `${__dirname}/../.eslintrc.js`,
+              configFile: '.eslintrc.js',
               failOnError: false,
               failOnWarning: false,
             },
@@ -87,7 +87,7 @@ module.exports = () => ({
 
     new HtmlPlugin({
       inject: true,
-      template: './example/index.html',
+      template: './src/example/index.html',
     }),
 
     new webpack.DefinePlugin({

@@ -7,7 +7,7 @@
     "prepare": "mkdir -p dist",
     "start:iframe": "webpack-dev-server --config=src/shells/iframe/webpack.config.js",
     "start:extension:application": "yarn clean && yarn prepare && yarn manifest && webpack-dev-server --inline --no-info --config=src/shells/extension/webpack.config.js",
-    "start:extension:example": "webpack-dev-server --config=example/webpack.config.js",
+    "start:extension:example": "webpack-dev-server --config=src/example/webpack.config.js",
     "build": "yarn clean && yarn prepare && yarn manifest && NODE_ENV=production webpack --config=src/shells/extension/webpack.config.js",
     "manifest": "cp src/shells/extension/manifest.json dist/manifest.json",
     "test": "yarn tsc && jest",
