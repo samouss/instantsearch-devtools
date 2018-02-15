@@ -64,7 +64,7 @@
     "prettier": "1.10.2",
     "raw-loader": "0.5.1",
     "react-test-renderer": "16.2.0",
-    "style-loader": "0.20.1",
+    "style-loader": "0.20.2",
     "tslint": "5.9.1",
     "tslint-config-prettier": "1.8.0",
     "tslint-eslint-rules": "5.0.0",
