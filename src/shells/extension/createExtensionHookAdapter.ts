@@ -1,9 +1,9 @@
-import { Adapter, ChannelEvent } from '../../types';
+import { Adapter, HookEvent } from '../../types';
 import * as NAMESPACES from '../../constants';
 
 export type State = {
   isReady: boolean;
-  queue: ChannelEvent[];
+  queue: HookEvent[];
 };
 
 const intialState: State = {
@@ -12,7 +12,7 @@ const intialState: State = {
 };
 
 const createExtensionHookAdapter = (state = intialState): Adapter => {
-  const emit = (event: ChannelEvent) =>
+  const emit = (event: HookEvent) =>
     window.postMessage(
       {
         source: NAMESPACES.HOOK_NAMESPACE,
@@ -30,9 +30,9 @@ const createExtensionHookAdapter = (state = intialState): Adapter => {
           event.data.source === NAMESPACES.CONTENT_SCRIPT_NAMESPACE;
 
         if (isSameSource && isFromExtension) {
-          const { type } = event.data;
+          const { type } = event.data as HookEvent;
 
-          if (type === 'CHANNEL_READY') {
+          if (type === 'HOOK_READY') {
             state.queue.forEach(emit);
             state.queue = [];
 

@@ -53,7 +53,7 @@ describe('createChannelManager', () => {
     );
 
     expect(contentScriptPort.postMessage).toHaveBeenCalledWith({
-      type: 'CHANNEL_READY',
+      type: 'HOOK_READY',
     });
   });
 

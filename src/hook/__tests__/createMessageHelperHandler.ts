@@ -1,4 +1,4 @@
-import { ChannelEvent, JSHelper } from '../../types';
+import { HookEvent, JSHelper } from '../../types';
 import createMessageHelperHandler from '../createMessageHelperHandler';
 
 describe('createMessageHelperHandler', () => {
@@ -8,7 +8,7 @@ describe('createMessageHelperHandler', () => {
 
   it('expect to do nothing', () => {
     const helper = createFakeHelper();
-    const event: ChannelEvent = {
+    const event: HookEvent = {
       type: 'CHANGE',
       parameters: {},
     };

@@ -1,4 +1,4 @@
-import { ChangeEvent } from '../../../types';
+import { HookEvent } from '../../../types';
 import * as NAMESPACES from '../../../constants';
 import createExtensionHookAdapter, {
   State,
@@ -29,13 +29,13 @@ describe('createExtensionHookAdapter', () => {
       expect(state.isReady).toBe(false);
     });
 
-    it('expect adapter to be ready on CHANNEL_READY', () => {
+    it('expect adapter to be ready on HOOK_READY', () => {
       const state = createFakeState();
       const event = {
         source: window,
         data: {
           source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
-          type: 'CHANNEL_READY',
+          type: 'HOOK_READY',
         },
       };
 
@@ -51,7 +51,7 @@ describe('createExtensionHookAdapter', () => {
       expect(state.isReady).toBe(true);
     });
 
-    it('expect adapter to be ready & flush the queue on CHANNEL_READY', () => {
+    it('expect adapter to be ready & flush the queue on HOOK_READY', () => {
       const state = createFakeState({
         queue: [
           { type: 'CHANGE', parameters: {} },
@@ -64,7 +64,7 @@ describe('createExtensionHookAdapter', () => {
         source: window,
         data: {
           source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
-          type: 'CHANNEL_READY',
+          type: 'HOOK_READY',
         },
       };
 
@@ -89,7 +89,7 @@ describe('createExtensionHookAdapter', () => {
         source: { ...window },
         data: {
           source: NAMESPACES.CONTENT_SCRIPT_NAMESPACE,
-          type: 'CHANNEL_READY',
+          type: 'HOOK_READY',
         },
       };
 
@@ -111,7 +111,7 @@ describe('createExtensionHookAdapter', () => {
         source: window,
         data: {
           source: 'other-extension-not-allowed',
-          type: 'CHANNEL_READY',
+          type: 'HOOK_READY',
         },
       };
 
@@ -134,7 +134,7 @@ describe('createExtensionHookAdapter', () => {
         isReady: true,
       });
 
-      const event: ChangeEvent = {
+      const event: HookEvent = {
         type: 'CHANGE',
         parameters: {},
       };
@@ -150,7 +150,7 @@ describe('createExtensionHookAdapter', () => {
 
     it('expect to queue the message when adapter is not ready', () => {
       const state = createFakeState();
-      const event: ChangeEvent = {
+      const event: HookEvent = {
         type: 'CHANGE',
         parameters: {},
       };

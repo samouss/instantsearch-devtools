@@ -88,7 +88,7 @@ const createChannelManager = (
       createTunnelChannel(state, devToolsPort, contentScriptPort);
 
       // @TODO: rename to Tunnel
-      contentScriptPort.postMessage({ type: 'CHANNEL_READY' });
+      contentScriptPort.postMessage({ type: 'HOOK_READY' });
     }
   };
 };

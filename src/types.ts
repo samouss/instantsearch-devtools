@@ -18,33 +18,33 @@ export type WindowWithDevTools = Window & {
 };
 
 export type Adapter = {
-  connect(callback: (event: ChannelEvent) => void): void;
-  emit(event: ChannelEvent): void;
+  connect(callback: (event: HookEvent) => void): void;
+  emit(event: HookEvent): void;
 };
 
-export type ChannelReadyEvent = {
-  type: 'CHANNEL_READY';
+export type ReadyHookEvent = {
+  type: 'HOOK_READY';
   source: string;
 };
 
-export type ChangeEvent = {
+export type ChangeHookEvent = {
   type: 'CHANGE';
   parameters: object;
 };
 
-export type SearchEvent = {
+export type SearchHookEvent = {
   type: 'SEARCH';
   parameters: object;
 };
 
-export type ResultsEvent = {
+export type ResultHookEvent = {
   type: 'RESULT';
   parameters: object;
   results: object;
 };
 
-export type ChannelEvent =
-  | ChannelReadyEvent
-  | ChangeEvent
-  | SearchEvent
-  | ResultsEvent;
+export type HookEvent =
+  | ReadyHookEvent
+  | ChangeHookEvent
+  | SearchHookEvent
+  | ResultHookEvent;

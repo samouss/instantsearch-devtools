@@ -1,11 +1,11 @@
-import { Adapter, ChannelEvent } from '../../types';
+import { Adapter, HookEvent } from '../../types';
 
 const createIframeApplicationAdapter = (): Adapter => ({
   connect(fn) {
     // @TODO: think about a solution for this `any`
     window.addEventListener('message', event => {
       if (event.source === window.parent) {
-        fn(event.data as ChannelEvent);
+        fn(event.data as HookEvent);
       }
     });
   },
