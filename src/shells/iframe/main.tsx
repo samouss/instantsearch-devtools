@@ -1,13 +1,44 @@
 import React from 'react';
 import { render } from 'react-dom';
-import algoliasearch from 'algoliasearch/lite';
+// import algoliasearch from 'algoliasearch/lite';
 import algoliasearchHelper from 'algoliasearch-helper';
 import App from '../../example/src/App';
 import { WindowWithDevTools } from '../../types';
 import createHookBridge from '../../bridge/createHookBridge';
 import createIframeHookAdapter from './createIframeHookAdapter';
+import { db, empty } from './db';
 
-const client = algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');
+type Query = {
+  indexName: string;
+  params: {
+    query: string;
+  };
+};
+
+const fakeClient = {
+  addAlgoliaAgent() {
+    return 'fakeUserAgent';
+  },
+  search(queries: Query[], fn: (error: object, res: object) => void) {
+    const nonErrorValue = null as any;
+
+    fn(nonErrorValue, {
+      results: queries.map(query => {
+        const value = query.params.query;
+        const res = db.get(value);
+
+        if (!res) {
+          return empty;
+        }
+
+        return res;
+      }),
+    });
+  },
+};
+
+// const client = algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');
+const client = fakeClient;
 const helper = algoliasearchHelper(client, 'bestbuy');
 
 const onIframeLoaded = () => {
