@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { InstantSearch, SearchBox, Hits, Configure } from 'flufykin/dom';
+import 'react-instantsearch-theme-algolia/style.css';
 import Hit from './Hit';
 import './App.css';
 
