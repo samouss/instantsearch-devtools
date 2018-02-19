@@ -1,12 +1,10 @@
 import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { Adapter } from '../../types';
-import configureStore from '../../application/store/configureStore';
 import createApplicationBridge from '../createApplicationBridge';
 
 jest.mock('react');
 jest.mock('react-dom');
-jest.mock('../../application/store/configureStore');
 
 describe('createApplicationBridge', () => {
   const createFakeAdapter = (): Adapter => ({
@@ -14,17 +12,20 @@ describe('createApplicationBridge', () => {
     emit: jest.fn(),
   });
 
-  it('expect to create & bind the bridge to the store', () => {
+  it('expect to create & bind the bridge to the App', () => {
+    const container = document.createElement('div');
     const adapter = createFakeAdapter();
 
-    const store = {
-      dispatch: jest.fn(),
-    };
-
-    (configureStore as jest.Mock).mockImplementationOnce(() => store);
+    (createElement as jest.Mock).mockImplementation(x => x);
 
     createApplicationBridge(adapter, {
       container: document.createElement('div'),
+    });
+
+    expect(render).toHaveBeenCalledTimes(1);
+    expect(render).toHaveBeenLastCalledWith(expect.any(Function), container);
+    expect(createElement).toHaveBeenLastCalledWith(expect.any(Function), {
+      emit: expect.any(Function),
     });
 
     // Simulate a message
@@ -33,9 +34,14 @@ describe('createApplicationBridge', () => {
       parameters: {},
     });
 
-    expect(store.dispatch).toHaveBeenLastCalledWith({
-      type: 'CHANGE',
-      parameters: {},
+    expect(render).toHaveBeenCalledTimes(2);
+    expect(render).toHaveBeenLastCalledWith(expect.any(Function), container);
+    expect(createElement).toHaveBeenLastCalledWith(expect.any(Function), {
+      emit: expect.any(Function),
+      event: {
+        type: 'CHANGE',
+        parameters: {},
+      },
     });
   });
 
@@ -43,13 +49,13 @@ describe('createApplicationBridge', () => {
     const container = document.createElement('div');
     const adapter = createFakeAdapter();
 
-    (createElement as jest.Mock).mockImplementationOnce(x => x);
+    (createElement as jest.Mock).mockImplementation(x => x);
 
     createApplicationBridge(adapter, {
       container,
     });
 
-    expect(unmountComponentAtNode).toHaveBeenCalledWith(container);
-    expect(render).toHaveBeenCalledWith(expect.any(Function), container);
+    expect(unmountComponentAtNode).toHaveBeenLastCalledWith(container);
+    expect(render).toHaveBeenLastCalledWith(expect.any(Function), container);
   });
 });

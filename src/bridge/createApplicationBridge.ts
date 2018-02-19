@@ -1,7 +1,6 @@
 import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import { Adapter } from '../types';
-import configureStore from '../application/store/configureStore';
+import { Adapter, HookEvent } from '../types';
 import App from '../application/App';
 import '../application/index.css';
 
@@ -9,28 +8,35 @@ type Configuration = {
   container: Element;
 };
 
+type RendererArgs = {
+  container: Element;
+  emit: (event: HookEvent) => void;
+};
+
+type Props = {
+  event?: HookEvent;
+};
+
+const renderer = ({ container, emit }: RendererArgs) => (props: Props = {}) =>
+  render(createElement(App, { emit, ...props }), container);
+
 const createApplicationBridge = (adapter: Adapter, params: Configuration) => {
   const { container } = params;
-  // const emmiter = createEmitter ...
-  // const store = configureStore({ emitter });
-  const store = configureStore();
 
-  adapter.connect(event => {
-    store.dispatch(event);
+  const render = renderer({
+    emit: event => adapter.emit(event),
+    container,
   });
 
-  // emitter.addListener(event => {
-  //   adapter.emit(event);
-  // });
+  adapter.connect(event => {
+    render({
+      event,
+    });
+  });
 
   unmountComponentAtNode(container);
 
-  render(
-    createElement(App, {
-      store,
-    }),
-    container,
-  );
+  render();
 };
 
 export default createApplicationBridge;
