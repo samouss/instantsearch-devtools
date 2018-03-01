@@ -631,9 +631,9 @@
   version "16.0.34"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.34.tgz#7a8f795afd8a404a9c4af9539b24c75d3996914e"
 
-"@types/react@16.0.39":
-  version "16.0.39"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.39.tgz#6aef052209521cd76f62cd7286abdc8fd787e39d"
+"@types/react@16.0.40":
+  version "16.0.40"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
 
 abab@^1.0.3:
   version "1.0.4"
