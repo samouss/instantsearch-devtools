@@ -47,6 +47,7 @@ module.exports = () => ({
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         loader: [
           { loader: 'style-loader' },
           {
@@ -61,6 +62,11 @@ module.exports = () => ({
           },
           { loader: 'postcss-loader' },
         ],
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.html$/,
