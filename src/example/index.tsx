@@ -2,16 +2,17 @@ import React from 'react';
 import { render } from 'react-dom';
 import algoliasearch from 'algoliasearch/lite';
 import algoliasearchHelper from 'algoliasearch-helper';
+import { WindowWithDevTools } from '../types';
 import App from './src/App';
 
 const client = algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');
 const helper = algoliasearchHelper(client, 'bestbuy');
 
 const run = () => {
-  /* eslint-disable no-underscore-dangle, no-unused-expressions */
-  window.__INSTANT_SEARCH_DEVTOOLS__ &&
-    window.__INSTANT_SEARCH_DEVTOOLS__(helper);
-  /* eslint-enable */
+  /* tslint:disable: no-unused-expression */
+  (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__ &&
+    (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__(helper);
+  /* tslint:enable: no-unused-expression */
 
   render(
     <App client={client} helper={helper} />,
@@ -20,8 +21,8 @@ const run = () => {
 };
 
 if (process.env.EXTENSION_ENV !== 'production') {
-  // eslint-disable-next-line
-  const isHookAlreadyLoaded = !!window.__INSTANT_SEARCH_DEVTOOLS__;
+  const isHookAlreadyLoaded = !!(window as WindowWithDevTools)
+    .__INSTANT_SEARCH_DEVTOOLS__;
 
   if (!isHookAlreadyLoaded) {
     // The hook could be laad before the page but it could be load after only

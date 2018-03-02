@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const EXTENSION_ENV = process.env.EXTENSION_ENV || 'development';
 const NODE_ENV = process.env.NODE_ENV || 'development';
@@ -10,7 +11,7 @@ const clean = plugins => plugins.filter(x => !!x);
 
 module.exports = () => ({
   devtool: 'cheap-module-source-map',
-  entry: './src/example/index.js',
+  entry: './src/example/index.tsx',
   output: {
     publicPath: '/',
     filename: '[name].[chunkhash:8].js',
@@ -19,7 +20,7 @@ module.exports = () => ({
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
         loaders: [
           {
@@ -35,6 +36,12 @@ module.exports = () => ({
               ],
             },
           },
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: [
           {
             loader: 'eslint-loader',
             options: {
@@ -74,6 +81,9 @@ module.exports = () => ({
       },
     ],
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   plugins: clean([
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -83,6 +93,10 @@ module.exports = () => ({
         module.context.indexOf('node_modules') !== -1 &&
         module.resource &&
         module.resource.match(/\.js$/),
+    }),
+
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
     }),
 
     new webpack.optimize.CommonsChunkPlugin({

@@ -1,11 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { InstantSearch, SearchBox, Hits, Configure } from 'flufykin/dom';
 import 'react-instantsearch-theme-algolia/style.css';
 import Hit from './Hit';
 import './App.css';
 
-const App = ({ client, helper }) => (
+// @FIXME
+type Props = {
+  client: any;
+  helper: any;
+};
+
+const App = ({ client, helper }: Props) => (
   <main>
     <InstantSearch
       indexName="bestbuy"
@@ -20,12 +25,5 @@ const App = ({ client, helper }) => (
     </InstantSearch>
   </main>
 );
-
-App.propTypes = {
-  // eslint-disable-next-line
-  client: PropTypes.object.isRequired,
-  // eslint-disable-next-line
-  helper: PropTypes.object.isRequired,
-};
 
 export default App;
