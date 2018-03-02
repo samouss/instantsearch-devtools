@@ -18,7 +18,7 @@ main {
   width: 100%;
   max-width: 800px;
   padding: 0 50px;
-  margin: 0 auto;
+  margin: 50px auto 0;
 }
 
 :global {

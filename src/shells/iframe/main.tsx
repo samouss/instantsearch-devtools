@@ -28,7 +28,7 @@ const onIframeLoaded = () => {
 const iframe = document.createElement('iframe');
 
 iframe.style.display = 'block';
-iframe.style.margin = '50px auto';
+iframe.style.margin = '50px auto 0';
 iframe.style.width = '760px';
 iframe.style.height = '510px';
 iframe.style.border = '5px solid';
