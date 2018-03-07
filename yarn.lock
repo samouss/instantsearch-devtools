@@ -734,9 +734,9 @@ algoliasearch-helper@^2.21.0:
     qs "^6.2.1"
     util "^0.10.3"
 
-algoliasearch@3.24.12:
-  version "3.24.12"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.24.12.tgz#7a0d133b7c80b8543319fe5cdfd6398c1e74e204"
+algoliasearch@3.25.0:
+  version "3.25.0"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.25.0.tgz#e5add1743aac5b43f31cc781855fb3eacbc7af0e"
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
