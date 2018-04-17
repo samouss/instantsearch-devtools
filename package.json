@@ -88,7 +88,7 @@
     "react-instantsearch-theme-algolia": "4.5.2",
     "react-json-tree": "0.11.0",
     "react-redux": "5.0.7",
-    "redux": "3.7.2",
+    "redux": "4.0.0",
     "redux-logger": "3.0.6",
     "uuid": "3.2.1"
   },
