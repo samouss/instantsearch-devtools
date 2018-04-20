@@ -816,9 +816,9 @@ ajv@^6.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-algoliasearch-helper@2.25.0:
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-2.25.0.tgz#6a3b7c2647cc8bfd3b238a4a4203363b49db87d7"
+algoliasearch-helper@2.25.1:
+  version "2.25.1"
+  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-2.25.1.tgz#89828b83257df7e6cd0a9e42cfb4ab5dd35a7f4e"
   dependencies:
     events "^1.1.0"
     lodash "^4.13.1"
