@@ -81,7 +81,7 @@
     "algoliasearch": "3.27.0",
     "algoliasearch-helper": "2.25.1",
     "flufykin": "4.5.2",
-    "luxon": "1.1.0",
+    "luxon": "1.2.0",
     "prop-types": "15.6.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
