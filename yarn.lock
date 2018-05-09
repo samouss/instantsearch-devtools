@@ -688,9 +688,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@types/algoliasearch@3.27.0":
-  version "3.27.0"
-  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.0.tgz#b6978984d074ee829d4009dab72be263eb7973a4"
+"@types/algoliasearch@3.27.1":
+  version "3.27.1"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.1.tgz#7907692345f435cbdfe800bd9ecd57b51858ec88"
 
 "@types/chrome@0.0.65":
   version "0.0.65"
