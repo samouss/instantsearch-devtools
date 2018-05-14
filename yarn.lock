@@ -7985,9 +7985,9 @@ write-file-atomic@^2.1.0:
     imurmurhash "^0.1.4"
     signal-exit "^3.0.2"
 
-write-file-webpack-plugin@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/write-file-webpack-plugin/-/write-file-webpack-plugin-4.3.0.tgz#ba9eacabfcf37fa2a7bc178df7add5289bbc204b"
+write-file-webpack-plugin@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/write-file-webpack-plugin/-/write-file-webpack-plugin-4.3.1.tgz#553994fcdf9bd276cb951cfea80cee7fc6b8bae5"
   dependencies:
     chalk "^2.4.0"
     debug "^3.1.0"
