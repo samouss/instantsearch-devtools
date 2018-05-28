@@ -9,7 +9,7 @@ const createIframeHookAdapter = (): Adapter => {
       // TODO: to implement
     },
     emit(event) {
-      iframe.contentWindow.postMessage(event, '*');
+      (iframe.contentWindow as Window).postMessage(event, '*');
     },
   };
 };
