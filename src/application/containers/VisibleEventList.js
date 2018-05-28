@@ -49,4 +49,7 @@ const mapDispatchToProps = dispatch => ({
   onEventClick: id => () => dispatch(selectEvent(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisibleEventList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VisibleEventList);
