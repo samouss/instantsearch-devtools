@@ -1,8 +1,7 @@
 import { Adapter } from '../../types';
 
 const createIframeHookAdapter = (): Adapter => {
-  const iframe =
-    document.querySelector('iframe') || document.createElement('iframe');
+  const iframe = document.querySelector('iframe') as HTMLIFrameElement;
 
   return {
     connect() {
