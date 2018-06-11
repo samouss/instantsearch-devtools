@@ -17,9 +17,10 @@
     "type": "git",
     "url": "https://github.com/samouss/react-webpack-starter.git"
   },
-  "author": [
-    "Samuel Vaillant <samuel.vllnt@gmail.com>"
-  ],
+  "author": {
+    "name": "Samuel Vaillant",
+    "email": "samuel.vllnt@gmail.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.0.0-beta.51",
