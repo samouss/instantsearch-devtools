@@ -748,9 +748,9 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
 
-"@types/jest@23.0.0":
-  version "23.0.0"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.0.0.tgz#760cac74f00bb9c3075587716d2b3b4435663bc0"
+"@types/jest@23.0.1":
+  version "23.0.1"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.0.1.tgz#c60dbed0bac210343d5dd0413744d6c8d0afac47"
 
 "@types/node@*":
   version "8.5.1"
