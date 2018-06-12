@@ -13,18 +13,18 @@ type Props = {
 };
 
 class App extends Component<Props, State> {
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+    if (!nextProps.event) {
+      return null;
+    }
+
+    return reducer(prevState, nextProps.event);
+  }
+
   state = {
     actionIds: [],
     actionById: new Map<Id, Action>(),
   };
-
-  componentWillReceiveProps(nextProps: Props) {
-    const { event } = nextProps;
-
-    if (event) {
-      this.setState(prevState => reducer(prevState, event));
-    }
-  }
 
   render() {
     const actions = getActions(this.state);

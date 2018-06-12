@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { Adapter, HookEvent } from '../types';
 import App from '../application/App';
@@ -17,7 +17,7 @@ type Props = {
 };
 
 const renderer = ({ container, emit }: RendererArgs) => (props: Props = {}) =>
-  render(createElement(App, { emit, ...props }), container);
+  render(<App {...props} emit={emit} />, container);
 
 const createApplicationBridge = (adapter: Adapter, params: Configuration) => {
   const { container } = params;
