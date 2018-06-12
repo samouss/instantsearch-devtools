@@ -3369,9 +3369,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flufykin@4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/flufykin/-/flufykin-4.5.2.tgz#20548d4764183a8688231382bb0654e607de4f5f"
+flufykin@4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/flufykin/-/flufykin-4.5.3.tgz#86a838d35a5fb9b286344b75e805bfc110bcf62d"
   dependencies:
     algoliasearch "^3.24.0"
     algoliasearch-helper "^2.21.0"
