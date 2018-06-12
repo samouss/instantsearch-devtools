@@ -2,7 +2,6 @@ import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { Adapter, HookEvent } from '../types';
 import App from '../application/App';
-import '../application/index.css';
 
 type Configuration = {
   container: Element;
