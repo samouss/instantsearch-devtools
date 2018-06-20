@@ -37,11 +37,29 @@ const createResultAction = (event: ResultHookEvent): ResultAction => ({
   results: event.results,
 });
 
-const reducer = (state: State, event: HookEvent): State => {
+export const createActionFromEvent = (event: HookEvent): Action => {
   switch (event.type) {
     case 'CHANGE': {
-      const action = createChangeAction(event);
+      return createChangeAction(event);
+    }
 
+    case 'SEARCH': {
+      return createSearchAction(event);
+    }
+
+    case 'RESULT': {
+      return createResultAction(event);
+    }
+
+    default: {
+      throw new Error(`Event "${event.type}" is not supported.`);
+    }
+  }
+};
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case 'CHANGE': {
       return {
         ...state,
         actionIds: [action.id].concat(state.actionIds),
@@ -50,8 +68,6 @@ const reducer = (state: State, event: HookEvent): State => {
     }
 
     case 'SEARCH': {
-      const action = createSearchAction(event);
-
       return {
         ...state,
         actionIds: [action.id].concat(state.actionIds),
@@ -60,8 +76,6 @@ const reducer = (state: State, event: HookEvent): State => {
     }
 
     case 'RESULT': {
-      const action = createResultAction(event);
-
       return {
         ...state,
         actionIds: [action.id].concat(state.actionIds),

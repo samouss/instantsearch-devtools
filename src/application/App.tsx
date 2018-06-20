@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HookEvent } from '../types';
 import { State, Action, Id } from './types';
-import reducer, { getActions } from './state/actions';
+import reducer, { createActionFromEvent, getActions } from './state/actions';
 import './index.css';
 
 // @FIXME: use different name or re-export the types
@@ -14,11 +14,13 @@ type Props = {
 
 class App extends Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    if (!nextProps.event) {
+    const { event } = nextProps;
+
+    if (!event) {
       return null;
     }
 
-    return reducer(prevState, nextProps.event);
+    return reducer(prevState, createActionFromEvent(event));
   }
 
   state = {
