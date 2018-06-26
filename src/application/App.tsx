@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { HookEvent } from '../types';
 import { State, Event, Id } from './types';
 import reducer, { createEventFromHookEvent, getEvents } from './state/event';
-import Timeline from './components/Timeline/index';
+import Timeline from './components/Timeline';
 import './index.css';
-
-// @FIXME: use different name or re-export the types
-// from one file to another...
 
 type Props = {
   event?: HookEvent;
