@@ -11,13 +11,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "test/*": ["./test"]
-    },
-    "typeRoots": [
-      "./node_modules/@types",
-      "./typings"
-    ]
+      "test/*": ["test/*"]
+    }
   }
 }
