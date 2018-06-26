@@ -25,7 +25,7 @@ class App extends Component<Props, State> {
     return null;
   }
 
-  state = {
+  readonly state: State = {
     eventIds: [],
     eventById: new Map<Id, Event>(),
   };
