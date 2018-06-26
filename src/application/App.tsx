@@ -13,12 +13,16 @@ type Props = {
 class App extends Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     const { event } = nextProps;
+    const { previousPropEvent } = prevState;
 
-    if (!event) {
-      return null;
+    if (event && event !== previousPropEvent) {
+      return {
+        ...reducer(prevState, createEventFromHookEvent(event)),
+        previousPropEvent: event,
+      };
     }
 
-    return reducer(prevState, createEventFromHookEvent(event));
+    return null;
   }
 
   state = {
