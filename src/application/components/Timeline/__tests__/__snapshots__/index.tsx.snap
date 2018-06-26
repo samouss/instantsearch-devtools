@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Timeline /> expect to render with events 1`] = `
+<div
+  styleName="Timeline"
+>
+  <ol
+    styleName="EventList"
+  >
+    <li
+      key="CHANGE_000"
+      styleName="EventListItem"
+    >
+      <Type
+        name="CHANGE"
+      />
+      <DateTime
+        format="mm:ss.SSS"
+        value={1000}
+      />
+    </li>
+    <li
+      key="SEARCH_000"
+      styleName="EventListItem"
+    >
+      <Type
+        name="SEARCH"
+      />
+      <DateTime
+        format="mm:ss.SSS"
+        value={2000}
+      />
+    </li>
+    <li
+      key="RESULT_000"
+      styleName="EventListItem"
+    >
+      <Type
+        name="RESULT"
+      />
+      <DateTime
+        format="mm:ss.SSS"
+        value={3000}
+      />
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`<Timeline /> expect to render without events 1`] = `
+<div
+  styleName="Timeline"
+>
+  <ol
+    styleName="EventList"
+  />
+</div>
+`;

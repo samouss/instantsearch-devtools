@@ -1,0 +1,24 @@
+.Timeline {
+  width: 35vw;
+  height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid lightgray;
+}
+
+.EventList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.EventListItem {
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.EventListItemDate {
+  font-weight: 600;
+}
