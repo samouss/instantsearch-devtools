@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Type /> expect to be case insensitive 1`] = `
+<span
+  className="Type Type--result"
+>
+  RESULT
+</span>
+`;
+
+exports[`<Type /> expect to render with "CHANGE" 1`] = `
+<span
+  className="Type Type--change"
+>
+  CHANGE
+</span>
+`;
+
+exports[`<Type /> expect to render with "RESULT" 1`] = `
+<span
+  className="Type Type--result"
+>
+  RESULT
+</span>
+`;
+
+exports[`<Type /> expect to render with "SEARCH" 1`] = `
+<span
+  className="Type Type--search"
+>
+  SEARCH
+</span>
+`;

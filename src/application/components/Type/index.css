@@ -1,0 +1,18 @@
+.Type {
+  padding: 4px 8px;
+  font-weight: 600;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.Type--change {
+  background-color: #5560B5;
+}
+
+.Type--search {
+  background-color: #008FBA;
+}
+
+.Type--result {
+  background-color: #3AB2BD;
+}
