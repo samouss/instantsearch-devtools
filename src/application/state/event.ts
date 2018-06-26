@@ -7,26 +7,26 @@ import {
 } from '../../types';
 import { State, Event, ChangeEvent, SearchEvent, ResultEvent } from '../types';
 
-// @FIXME: Try to destrcuture types
+const START = Date.now();
 
 const createChangeEvent = (event: ChangeHookEvent): ChangeEvent => ({
   type: 'CHANGE',
   id: v4(),
-  time: Date.now(),
+  time: Date.now() - START,
   parameters: event.parameters,
 });
 
 const createSearchEvent = (event: SearchHookEvent): SearchEvent => ({
   type: 'SEARCH',
   id: v4(),
-  time: Date.now(),
+  time: Date.now() - START,
   parameters: event.parameters,
 });
 
 const createResultEvent = (event: ResultHookEvent): ResultEvent => ({
   type: 'RESULT',
   id: v4(),
-  time: Date.now(),
+  time: Date.now() - START,
   parameters: event.parameters,
   results: event.results,
 });
@@ -50,6 +50,7 @@ export const createEventFromHookEvent = (event: HookEvent): Event => {
     }
   }
 };
+
 const reducer = (state: State, event: Event): State => {
   switch (event.type) {
     case 'CHANGE': {
