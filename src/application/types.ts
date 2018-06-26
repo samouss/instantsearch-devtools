@@ -1,20 +1,20 @@
 export type Id = string;
 
-export type ChangeAction = {
+export type ChangeEvent = {
   type: 'CHANGE';
   id: Id;
   time: number;
   parameters: object;
 };
 
-export type SearchAction = {
+export type SearchEvent = {
   type: 'SEARCH';
   id: Id;
   time: number;
   parameters: object;
 };
 
-export type ResultAction = {
+export type ResultEvent = {
   type: 'RESULT';
   id: Id;
   time: number;
@@ -22,9 +22,9 @@ export type ResultAction = {
   results: object;
 };
 
-export type Action = ChangeAction | SearchAction | ResultAction;
+export type Event = ChangeEvent | SearchEvent | ResultEvent;
 
 export type State = {
-  actionIds: Id[];
-  actionById: Map<Id, Action>;
+  eventIds: Id[];
+  eventById: Map<Id, Event>;
 };

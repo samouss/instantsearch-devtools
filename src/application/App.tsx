@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { HookEvent } from '../types';
-import { State, Action, Id } from './types';
-import reducer, { createActionFromEvent, getActions } from './state/actions';
+import { State, Event, Id } from './types';
+import reducer, { createEventFromHookEvent, getEvents } from './state/event';
+import Timeline from './components/Timeline/index';
 import './index.css';
 
 // @FIXME: use different name or re-export the types
@@ -20,18 +21,22 @@ class App extends Component<Props, State> {
       return null;
     }
 
-    return reducer(prevState, createActionFromEvent(event));
+    return reducer(prevState, createEventFromHookEvent(event));
   }
 
   state = {
-    actionIds: [],
-    actionById: new Map<Id, Action>(),
+    eventIds: [],
+    eventById: new Map<Id, Event>(),
   };
 
   render() {
-    const actions = getActions(this.state);
+    const events = getEvents(this.state);
 
-    return <div>{actions.map(({ id }) => <p key={id}>{id}</p>)}</div>;
+    return (
+      <div>
+        <Timeline events={events} />
+      </div>
+    );
   }
 }
 
