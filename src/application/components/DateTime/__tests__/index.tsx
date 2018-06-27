@@ -3,15 +3,14 @@ import { shallow } from 'enzyme';
 import DateTime from '../index';
 
 describe('<DateTime />', () => {
-  it('exepct to render with the date', () => {
+  it('exepct to render', () => {
     const props = {
       value: new Date('01/01/2000'),
       format: 'MM-YYYY',
-      children: jest.fn(),
     };
 
-    shallow(<DateTime {...props} />);
+    const wrapper = shallow(<DateTime {...props} />);
 
-    expect(props.children).toHaveBeenCalledWith('01-2000');
+    expect(wrapper).toMatchSnapshot();
   });
 });

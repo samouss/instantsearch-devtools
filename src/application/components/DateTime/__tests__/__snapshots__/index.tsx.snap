@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DateTime /> exepct to render 1`] = `
+<React.Fragment>
+  01-2000
+</React.Fragment>
+`;
