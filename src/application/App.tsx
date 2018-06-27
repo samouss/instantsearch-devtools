@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { HookEvent } from '../types';
 import { State, Event, Id } from './types';
-import reducer, { createEventFromHookEvent, getEvents } from './state/event';
+import reducer, {
+  createEventFromHookEvent,
+  getEvents,
+  getSelectedEvent,
+} from './state/event';
 import Timeline from './components/Timeline';
 import './index.css';
 
@@ -30,12 +34,27 @@ class App extends Component<Props, State> {
     eventById: new Map<Id, Event>(),
   };
 
+  onClickEventTimeline = ({ id }: Event) => {
+    this.setState(() => ({
+      selectedEventId: id,
+    }));
+  };
+
   render() {
+    const { selectedEventId } = this.state;
     const events = getEvents(this.state);
+    const selectedEvent =
+      selectedEventId && getSelectedEvent(this.state, selectedEventId);
 
     return (
-      <div>
-        <Timeline events={events} />
+      <div style={{ display: 'flex' }}>
+        <Timeline
+          events={events}
+          selectedEventId={selectedEventId}
+          onClickEventTimeline={this.onClickEventTimeline}
+        />
+
+        {selectedEvent && <p>Selected event {selectedEvent.id}</p>}
       </div>
     );
   }

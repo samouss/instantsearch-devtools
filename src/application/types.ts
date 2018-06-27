@@ -27,5 +27,6 @@ export type Event = ChangeEvent | SearchEvent | ResultEvent;
 export type State = {
   eventIds: Id[];
   eventById: Map<Id, Event>;
+  selectedEventId?: Id;
   previousPropEvent?: Event;
 };

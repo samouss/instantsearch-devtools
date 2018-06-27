@@ -5,7 +5,14 @@ import {
   SearchHookEvent,
   ResultHookEvent,
 } from '../../types';
-import { State, Event, ChangeEvent, SearchEvent, ResultEvent } from '../types';
+import {
+  Id,
+  State,
+  Event,
+  ChangeEvent,
+  SearchEvent,
+  ResultEvent,
+} from '../types';
 
 const START = Date.now();
 
@@ -87,6 +94,10 @@ export const getEvents = (state: State): Event[] => {
   return state.eventIds.map(id => {
     return state.eventById.get(id) as Event;
   });
+};
+
+export const getSelectedEvent = (state: State, id: Id): Event => {
+  return state.eventById.get(id) as Event;
 };
 
 export default reducer;
