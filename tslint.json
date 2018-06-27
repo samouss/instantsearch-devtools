@@ -12,6 +12,7 @@
     "prettier": true,
     "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": false,
+    "jsx-no-lambda": false,
     "member-access": false,
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
