@@ -1,5 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Timeline /> expect to render with a selected event 1`] = `
+<div
+  styleName="Timeline"
+>
+  <ol
+    styleName="EventList"
+  >
+    <li
+      className="EventListItem"
+      key="CHANGE_000"
+      onClick={[Function]}
+    >
+      <Type
+        name="CHANGE"
+      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={1000}
+        />
+      </span>
+    </li>
+    <li
+      className="EventListItem"
+      key="SEARCH_ID"
+      onClick={[Function]}
+    >
+      <Type
+        name="SEARCH"
+      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={2000}
+        />
+      </span>
+    </li>
+    <li
+      className="EventListItem"
+      key="RESULT_000"
+      onClick={[Function]}
+    >
+      <Type
+        name="RESULT"
+      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={3000}
+        />
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+
 exports[`<Timeline /> expect to render with events 1`] = `
 <div
   styleName="Timeline"
@@ -8,40 +70,55 @@ exports[`<Timeline /> expect to render with events 1`] = `
     styleName="EventList"
   >
     <li
+      className="EventListItem"
       key="CHANGE_000"
-      styleName="EventListItem"
+      onClick={[Function]}
     >
       <Type
         name="CHANGE"
       />
-      <DateTime
-        format="mm:ss.SSS"
-        value={1000}
-      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={1000}
+        />
+      </span>
     </li>
     <li
+      className="EventListItem"
       key="SEARCH_000"
-      styleName="EventListItem"
+      onClick={[Function]}
     >
       <Type
         name="SEARCH"
       />
-      <DateTime
-        format="mm:ss.SSS"
-        value={2000}
-      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={2000}
+        />
+      </span>
     </li>
     <li
+      className="EventListItem"
       key="RESULT_000"
-      styleName="EventListItem"
+      onClick={[Function]}
     >
       <Type
         name="RESULT"
       />
-      <DateTime
-        format="mm:ss.SSS"
-        value={3000}
-      />
+      <span
+        styleName="EventListItemDate"
+      >
+        <DateTime
+          format="mm:ss.SSS"
+          value={3000}
+        />
+      </span>
     </li>
   </ol>
 </div>

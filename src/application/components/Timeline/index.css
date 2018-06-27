@@ -12,11 +12,29 @@
 }
 
 .EventListItem {
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.EventListItem:hover,
+.EventListItemActive {
+  background-color: #F5F5FA;
+}
+
+.EventListItem:hover {
+  cursor: pointer;
+}
+
+.EventListItem:focus {
+  outline: none;
+}
+
+.EventListItemButton {
+
 }
 
 .EventListItemDate {
