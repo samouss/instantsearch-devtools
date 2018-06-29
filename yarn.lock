@@ -789,6 +789,12 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-json-tree@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@types/react-json-tree/-/react-json-tree-0.6.7.tgz#a4ac442c2a2278bb48091581adb687ea80e9908e"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.4.2":
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.2.tgz#f1a9cf1ee85221530def2ac26aee20f910a9dac8"
