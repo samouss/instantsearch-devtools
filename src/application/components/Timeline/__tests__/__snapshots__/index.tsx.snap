@@ -58,6 +58,16 @@ exports[`<Timeline /> expect to render with a selected event 1`] = `
         />
       </span>
     </li>
+    <li
+      styleName="EventListItem EventListItemSentinel"
+    >
+      <span
+        aria-label="Empty"
+        role="img"
+      >
+        📭
+      </span>
+    </li>
   </ol>
 </div>
 `;
@@ -120,6 +130,16 @@ exports[`<Timeline /> expect to render with events 1`] = `
         />
       </span>
     </li>
+    <li
+      styleName="EventListItem EventListItemSentinel"
+    >
+      <span
+        aria-label="Empty"
+        role="img"
+      >
+        📭
+      </span>
+    </li>
   </ol>
 </div>
 `;
@@ -130,6 +150,17 @@ exports[`<Timeline /> expect to render without events 1`] = `
 >
   <ol
     styleName="EventList"
-  />
+  >
+    <li
+      styleName="EventListItem EventListItemSentinel"
+    >
+      <span
+        aria-label="Empty"
+        role="img"
+      >
+        📭
+      </span>
+    </li>
+  </ol>
 </div>
 `;

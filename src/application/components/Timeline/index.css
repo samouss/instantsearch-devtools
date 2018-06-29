@@ -33,6 +33,16 @@
   outline: none;
 }
 
+.EventListItemSentinel {
+  justify-content: center;
+  border-bottom: none;
+}
+
+.EventListItemSentinel:hover {
+  background: none;
+  cursor: default;
+}
+
 .EventListItemButton {
 
 }

@@ -33,6 +33,11 @@ const Timeline: SFC<Props> = ({
           </span>
         </li>
       ))}
+      <li styleName="EventListItem EventListItemSentinel">
+        <span role="img" aria-label="Empty">
+          📭
+        </span>
+      </li>
     </ol>
   </div>
 );
