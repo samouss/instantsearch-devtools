@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Content /> exepct to render 1`] = `
+<div
+  styleName="Content"
+>
+  This is the children.
+</div>
+`;
