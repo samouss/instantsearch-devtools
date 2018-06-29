@@ -8,6 +8,8 @@ import reducer, {
 } from './state/event';
 import Layout from './components/Layout';
 import Timeline from './components/Timeline';
+import Content from './components/Content';
+import Detail from './components/Detail';
 import './index.css';
 
 type Props = {
@@ -55,7 +57,7 @@ class App extends Component<Props, State> {
           onClickEventTimeline={this.onClickEventTimeline}
         />
 
-        {selectedEvent && <p>Selected event {selectedEvent.id}</p>}
+        <Content>{selectedEvent && <Detail event={selectedEvent} />}</Content>
       </Layout>
     );
   }
