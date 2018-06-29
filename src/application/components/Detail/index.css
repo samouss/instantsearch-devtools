@@ -1,0 +1,37 @@
+.Detail {
+  flex: 1;
+  padding: 10px;
+}
+
+.DetailHeader {
+  display: flex;
+  align-items: center;
+  top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: sticky;
+  background-color: white;
+  z-index: 999;
+}
+
+.DetailItemDate {
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.DetailSearchResults {
+  margin-bottom: 30px;
+}
+
+.DetailSearchParameters {
+
+}
+
+.DetailSearchTitle {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+}

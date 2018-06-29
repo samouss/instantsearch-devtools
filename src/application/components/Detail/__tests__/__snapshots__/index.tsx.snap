@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Detail /> expect to render with CHANGE event 1`] = `
+<div
+  styleName="Detail"
+>
+  <div
+    styleName="DetailHeader"
+  >
+    <Type
+      name="CHANGE"
+    />
+    <span
+      styleName="DetailItemDate"
+    >
+      <DateTime
+        format="mm:ss.SSS"
+        value={1000}
+      />
+    </span>
+  </div>
+  <div
+    styleName="DetailSearchParameters"
+  >
+    <pre
+      styleName="DetailSearchTitle"
+    >
+      searchParameters
+    </pre>
+    <JSONViewer
+      data={
+        Object {
+          "query": "Apple",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`<Detail /> expect to render with RESULT event 1`] = `
+<div
+  styleName="Detail"
+>
+  <div
+    styleName="DetailHeader"
+  >
+    <Type
+      name="RESULT"
+    />
+    <span
+      styleName="DetailItemDate"
+    >
+      <DateTime
+        format="mm:ss.SSS"
+        value={3000}
+      />
+    </span>
+  </div>
+  <div
+    styleName="DetailSearchResults"
+  >
+    <pre
+      styleName="DetailSearchTitle"
+    >
+      searchResults
+    </pre>
+    <JSONViewer
+      data={
+        Object {
+          "hits": Array [],
+        }
+      }
+    />
+  </div>
+  <div
+    styleName="DetailSearchParameters"
+  >
+    <pre
+      styleName="DetailSearchTitle"
+    >
+      searchParameters
+    </pre>
+    <JSONViewer
+      data={
+        Object {
+          "query": "Apple",
+        }
+      }
+    />
+  </div>
+</div>
+`;
