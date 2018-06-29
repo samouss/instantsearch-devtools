@@ -6,6 +6,7 @@ import reducer, {
   getEvents,
   getSelectedEvent,
 } from './state/event';
+import Layout from './components/Layout';
 import Timeline from './components/Timeline';
 import './index.css';
 
@@ -47,7 +48,7 @@ class App extends Component<Props, State> {
       selectedEventId && getSelectedEvent(this.state, selectedEventId);
 
     return (
-      <div style={{ display: 'flex' }}>
+      <Layout>
         <Timeline
           events={events}
           selectedEventId={selectedEventId}
@@ -55,7 +56,7 @@ class App extends Component<Props, State> {
         />
 
         {selectedEvent && <p>Selected event {selectedEvent.id}</p>}
-      </div>
+      </Layout>
     );
   }
 }
