@@ -11,6 +11,7 @@ export const createFakeChangeEvent = (
   id: 'CHANGE_000',
   time: 1000,
   parameters: {},
+  diffs: [],
   ...props,
 });
 
@@ -21,6 +22,7 @@ export const createFakeSearchEvent = (
   id: 'SEARCH_000',
   time: 2000,
   parameters: {},
+  diffs: [],
   ...props,
 });
 
@@ -32,5 +34,6 @@ export const createFakeResultEvent = (
   time: 3000,
   parameters: {},
   results: {},
+  diffs: [],
   ...props,
 });

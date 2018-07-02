@@ -23,8 +23,11 @@ class App extends Component<Props, State> {
     const { previousPropEvent } = prevState;
 
     if (event && event !== previousPropEvent) {
+      const nextEvent = createEventFromHookEvent(event);
+      const nextSliceState = reducer(prevState, nextEvent);
+
       return {
-        ...reducer(prevState, createEventFromHookEvent(event)),
+        ...nextSliceState,
         previousPropEvent: event,
       };
     }
@@ -33,6 +36,9 @@ class App extends Component<Props, State> {
   }
 
   readonly state: State = {
+    changeEventIds: [],
+    searchEventIds: [],
+    resultEventIds: [],
     eventIds: [],
     eventById: new Map<Id, Event>(),
   };

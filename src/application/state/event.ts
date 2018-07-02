@@ -1,4 +1,5 @@
 import { v4 } from 'uuid';
+import { head, isEqual } from 'lodash-es';
 import {
   HookEvent,
   ChangeHookEvent,
@@ -9,6 +10,7 @@ import {
   Id,
   State,
   Event,
+  Diff,
   ChangeEvent,
   SearchEvent,
   ResultEvent,
@@ -21,6 +23,7 @@ const createChangeEvent = (event: ChangeHookEvent): ChangeEvent => ({
   id: v4(),
   time: Date.now() - START,
   parameters: event.parameters,
+  diffs: [],
 });
 
 const createSearchEvent = (event: SearchHookEvent): SearchEvent => ({
@@ -28,6 +31,7 @@ const createSearchEvent = (event: SearchHookEvent): SearchEvent => ({
   id: v4(),
   time: Date.now() - START,
   parameters: event.parameters,
+  diffs: [],
 });
 
 const createResultEvent = (event: ResultHookEvent): ResultEvent => ({
@@ -36,6 +40,7 @@ const createResultEvent = (event: ResultHookEvent): ResultEvent => ({
   time: Date.now() - START,
   parameters: event.parameters,
   results: event.results,
+  diffs: [],
 });
 
 export const createEventFromHookEvent = (event: HookEvent): Event => {
@@ -58,29 +63,64 @@ export const createEventFromHookEvent = (event: HookEvent): Event => {
   }
 };
 
+const computeEventChanges = <T extends Event>(previous: T, next: T): Diff[] => {
+  const keysUpdated: string[] = Object.keys(next.parameters).filter(
+    attribute =>
+      !isEqual(previous.parameters[attribute], next.parameters[attribute]),
+  );
+
+  return keysUpdated.map(attribute => ({
+    previous: previous.parameters[attribute],
+    next: next.parameters[attribute],
+    attribute,
+  }));
+};
+
 const reducer = (state: State, event: Event): State => {
   switch (event.type) {
     case 'CHANGE': {
+      const latestChangeEvent = getLatestChangeEvent(state);
+      // @TODO: move when we create the event
+      const nextEvent = latestChangeEvent
+        ? { ...event, diffs: computeEventChanges(latestChangeEvent, event) }
+        : event;
+
       return {
         ...state,
+        changeEventIds: [event.id].concat(state.changeEventIds),
         eventIds: [event.id].concat(state.eventIds),
-        eventById: state.eventById.set(event.id, event),
+        eventById: state.eventById.set(event.id, nextEvent),
       };
     }
 
     case 'SEARCH': {
+      const latestEvent = getLatestSearchEvent(state);
+      // @TODO: move when we create the event
+      const nextEvent = latestEvent
+        ? { ...event, diffs: computeEventChanges(latestEvent, event) }
+        : event;
+
       return {
         ...state,
+        searchEventIds: [event.id].concat(state.searchEventIds),
         eventIds: [event.id].concat(state.eventIds),
-        eventById: state.eventById.set(event.id, event),
+        eventById: state.eventById.set(event.id, nextEvent),
       };
     }
 
     case 'RESULT': {
+      // @TODO: support both changes
+      const latestEvent = getLatestResultEvent(state);
+      // @TODO: move when we create the event
+      const nextEvent = latestEvent
+        ? { ...event, diffs: computeEventChanges(latestEvent, event) }
+        : event;
+
       return {
         ...state,
+        resultEventIds: [event.id].concat(state.resultEventIds),
         eventIds: [event.id].concat(state.eventIds),
-        eventById: state.eventById.set(event.id, event),
+        eventById: state.eventById.set(event.id, nextEvent),
       };
     }
 
@@ -92,12 +132,36 @@ const reducer = (state: State, event: Event): State => {
 
 export const getEvents = (state: State): Event[] => {
   return state.eventIds.map(id => {
-    return state.eventById.get(id) as Event;
+    return state.eventById.get(id)!;
   });
 };
 
 export const getSelectedEvent = (state: State, id: Id): Event => {
-  return state.eventById.get(id) as Event;
+  return state.eventById.get(id)!;
+};
+
+export const getLatestChangeEvent = (state: State): ChangeEvent | undefined => {
+  const lastEventId = head(state.changeEventIds);
+
+  return lastEventId
+    ? (state.eventById.get(lastEventId) as ChangeEvent)
+    : undefined;
+};
+
+export const getLatestSearchEvent = (state: State): SearchEvent | undefined => {
+  const lastEventId = head(state.searchEventIds);
+
+  return lastEventId
+    ? (state.eventById.get(lastEventId) as SearchEvent)
+    : undefined;
+};
+
+export const getLatestResultEvent = (state: State): ResultEvent | undefined => {
+  const lastEventId = head(state.resultEventIds);
+
+  return lastEventId
+    ? (state.eventById.get(lastEventId) as ResultEvent)
+    : undefined;
 };
 
 export default reducer;
