@@ -29,9 +29,7 @@ describe('createHookBridge', () => {
   it('expect to create & bind the bridge to the handler', () => {
     const adapter = createFakeAdapter();
     const fakeOnMessageHelperHandler = jest.fn();
-    const createFakeMessageHelperHandler = jest.fn(
-      () => fakeOnMessageHelperHandler,
-    );
+    const createFakeMessageHelperHandler = jest.fn(() => fakeOnMessageHelperHandler);
 
     (createMessageHelperHandler as jest.Mock).mockImplementationOnce(
       createFakeMessageHelperHandler,

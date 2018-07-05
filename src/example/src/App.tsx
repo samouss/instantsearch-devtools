@@ -12,11 +12,7 @@ type Props = {
 
 const App = ({ client, helper }: Props) => (
   <main>
-    <InstantSearch
-      indexName="bestbuy"
-      algoliaClient={client}
-      algoliaHelper={helper}
-    >
+    <InstantSearch indexName="bestbuy" algoliaClient={client} algoliaHelper={helper}>
       <Configure hitsPerPage={30} />
 
       <SearchBox />

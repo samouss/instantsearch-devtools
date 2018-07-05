@@ -27,9 +27,7 @@ describe('createExtensionApplicationAdapter', () => {
 
     createExtensionApplicationAdapter(context);
 
-    expect(port.onDisconnect.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(port.onDisconnect.addListener).toHaveBeenCalledWith(expect.any(Function));
 
     // Simulate disconnect event
     port.onDisconnect.addListener.mock.calls[0][0](port);

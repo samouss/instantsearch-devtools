@@ -38,19 +38,11 @@ describe('createChannelManager', () => {
     createChannelManager(context, state)(devToolsPort);
     createChannelManager(context, state)(contentScriptPort);
 
-    expect(devToolsPort.onMessage.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
-    expect(contentScriptPort.onMessage.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onMessage.addListener).toHaveBeenCalledWith(expect.any(Function));
+    expect(contentScriptPort.onMessage.addListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(devToolsPort.onDisconnect.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
-    expect(contentScriptPort.onDisconnect.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onDisconnect.addListener).toHaveBeenCalledWith(expect.any(Function));
+    expect(contentScriptPort.onDisconnect.addListener).toHaveBeenCalledWith(expect.any(Function));
 
     expect(contentScriptPort.postMessage).toHaveBeenCalledWith({
       type: 'HOOK_READY',
@@ -69,16 +61,10 @@ describe('createChannelManager', () => {
 
     devToolsPort.onDisconnect.addListener.mock.calls[0][0](devToolsPort);
 
-    expect(devToolsPort.onMessage.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
-    expect(contentScriptPort.onMessage.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onMessage.removeListener).toHaveBeenCalledWith(expect.any(Function));
+    expect(contentScriptPort.onMessage.removeListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(devToolsPort.onDisconnect.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onDisconnect.removeListener).toHaveBeenCalledWith(expect.any(Function));
     expect(contentScriptPort.onDisconnect.removeListener).toHaveBeenCalledWith(
       expect.any(Function),
     );
@@ -99,20 +85,12 @@ describe('createChannelManager', () => {
     createChannelManager(context, state)(devToolsPort);
     createChannelManager(context, state)(contentScriptPort);
 
-    contentScriptPort.onDisconnect.addListener.mock.calls[0][0](
-      contentScriptPort,
-    );
+    contentScriptPort.onDisconnect.addListener.mock.calls[0][0](contentScriptPort);
 
-    expect(devToolsPort.onMessage.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
-    expect(contentScriptPort.onMessage.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onMessage.removeListener).toHaveBeenCalledWith(expect.any(Function));
+    expect(contentScriptPort.onMessage.removeListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(devToolsPort.onDisconnect.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(devToolsPort.onDisconnect.removeListener).toHaveBeenCalledWith(expect.any(Function));
     expect(contentScriptPort.onDisconnect.removeListener).toHaveBeenCalledWith(
       expect.any(Function),
     );

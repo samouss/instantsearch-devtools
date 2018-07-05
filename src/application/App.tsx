@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { HookEvent } from '../types';
 import { State, Event, Id } from './types';
-import reducer, {
-  createEventFromHookEvent,
-  getEvents,
-  getSelectedEvent,
-} from './state/event';
+import reducer, { createEventFromHookEvent, getEvents, getSelectedEvent } from './state/event';
 import Layout from './components/Layout';
 import Timeline from './components/Timeline';
 import Content from './components/Content';
@@ -52,8 +48,7 @@ class App extends Component<Props, State> {
   render() {
     const { selectedEventId } = this.state;
     const events = getEvents(this.state);
-    const selectedEvent =
-      selectedEventId && getSelectedEvent(this.state, selectedEventId);
+    const selectedEvent = selectedEventId && getSelectedEvent(this.state, selectedEventId);
 
     return (
       <Layout>

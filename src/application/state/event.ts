@@ -1,20 +1,8 @@
 import { v4 } from 'uuid';
-import { head, isEqual } from 'lodash-es';
-import {
-  HookEvent,
-  ChangeHookEvent,
-  SearchHookEvent,
-  ResultHookEvent,
-} from '../../types';
-import {
-  Id,
-  State,
-  Event,
-  Diff,
-  ChangeEvent,
-  SearchEvent,
-  ResultEvent,
-} from '../types';
+import { head } from 'lodash-es';
+import { HookEvent, ChangeHookEvent, SearchHookEvent, ResultHookEvent } from '../../types';
+import { Id, State, Event, ChangeEvent, SearchEvent, ResultEvent } from '../types';
+import { computeEventChanges } from './diff';
 
 const START = Date.now();
 
@@ -143,25 +131,19 @@ export const getSelectedEvent = (state: State, id: Id): Event => {
 export const getLatestChangeEvent = (state: State): ChangeEvent | undefined => {
   const lastEventId = head(state.changeEventIds);
 
-  return lastEventId
-    ? (state.eventById.get(lastEventId) as ChangeEvent)
-    : undefined;
+  return lastEventId ? (state.eventById.get(lastEventId) as ChangeEvent) : undefined;
 };
 
 export const getLatestSearchEvent = (state: State): SearchEvent | undefined => {
   const lastEventId = head(state.searchEventIds);
 
-  return lastEventId
-    ? (state.eventById.get(lastEventId) as SearchEvent)
-    : undefined;
+  return lastEventId ? (state.eventById.get(lastEventId) as SearchEvent) : undefined;
 };
 
 export const getLatestResultEvent = (state: State): ResultEvent | undefined => {
   const lastEventId = head(state.resultEventIds);
 
-  return lastEventId
-    ? (state.eventById.get(lastEventId) as ResultEvent)
-    : undefined;
+  return lastEventId ? (state.eventById.get(lastEventId) as ResultEvent) : undefined;
 };
 
 export default reducer;

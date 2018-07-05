@@ -43,8 +43,4 @@ export type ResultHookEvent = {
   results: object;
 };
 
-export type HookEvent =
-  | ReadyHookEvent
-  | ChangeHookEvent
-  | SearchHookEvent
-  | ResultHookEvent;
+export type HookEvent = ReadyHookEvent | ChangeHookEvent | SearchHookEvent | ResultHookEvent;

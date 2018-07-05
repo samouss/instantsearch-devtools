@@ -18,18 +18,11 @@ describe('createContentScriptChannel', () => {
       name: 'contentScript',
     });
 
-    expect(port.onMessage.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(port.onMessage.addListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(port.onDisconnect.addListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(port.onDisconnect.addListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(window.addEventListener).toHaveBeenCalledWith(
-      'message',
-      expect.any(Function),
-    );
+    expect(window.addEventListener).toHaveBeenCalledWith('message', expect.any(Function));
   });
 
   it('expect to destroy the connection', () => {
@@ -46,18 +39,11 @@ describe('createContentScriptChannel', () => {
     // Simulate the message devTools => hook
     port.onDisconnect.addListener.mock.calls[0][0](port);
 
-    expect(port.onMessage.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(port.onMessage.removeListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(port.onDisconnect.removeListener).toHaveBeenCalledWith(
-      expect.any(Function),
-    );
+    expect(port.onDisconnect.removeListener).toHaveBeenCalledWith(expect.any(Function));
 
-    expect(window.removeEventListener).toHaveBeenCalledWith(
-      'message',
-      expect.any(Function),
-    );
+    expect(window.removeEventListener).toHaveBeenCalledWith('message', expect.any(Function));
 
     expect(port.disconnect).toHaveBeenCalled();
   });

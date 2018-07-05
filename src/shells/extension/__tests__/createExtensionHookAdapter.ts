@@ -1,8 +1,6 @@
 import { HookEvent } from '../../../types';
 import * as NAMESPACES from '../../../constants';
-import createExtensionHookAdapter, {
-  State,
-} from '../createExtensionHookAdapter';
+import createExtensionHookAdapter, { State } from '../createExtensionHookAdapter';
 
 describe('createExtensionHookAdapter', () => {
   const createFakeState = (next?: Partial<State>) => ({
@@ -21,10 +19,7 @@ describe('createExtensionHookAdapter', () => {
 
       adapter.connect(() => null);
 
-      expect(window.addEventListener).toHaveBeenCalledWith(
-        'message',
-        expect.any(Function),
-      );
+      expect(window.addEventListener).toHaveBeenCalledWith('message', expect.any(Function));
 
       expect(state.isReady).toBe(false);
     });

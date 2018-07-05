@@ -26,8 +26,7 @@ const createExtensionHookAdapter = (state = intialState): Adapter => {
       window.addEventListener('message', event => {
         const isSameSource = event.source === window;
         const isFromExtension =
-          event.data &&
-          event.data.source === NAMESPACES.CONTENT_SCRIPT_NAMESPACE;
+          event.data && event.data.source === NAMESPACES.CONTENT_SCRIPT_NAMESPACE;
 
         if (isSameSource && isFromExtension) {
           const { type } = event.data as HookEvent;

@@ -11,11 +11,7 @@ export type Props = {
   selectedEventId?: Id;
 };
 
-const Timeline: SFC<Props> = ({
-  events,
-  selectedEventId,
-  onClickEventTimeline,
-}) => (
+const Timeline: SFC<Props> = ({ events, selectedEventId, onClickEventTimeline }) => (
   <div styleName="Timeline">
     <ol styleName="EventList">
       {events.map(event => (

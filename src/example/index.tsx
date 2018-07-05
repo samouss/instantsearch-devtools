@@ -14,15 +14,11 @@ const run = () => {
     (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__(helper);
   /* tslint:enable: no-unused-expression */
 
-  render(
-    <App client={client} helper={helper} />,
-    document.getElementById('root'),
-  );
+  render(<App client={client} helper={helper} />, document.getElementById('root'));
 };
 
 if (process.env.EXTENSION_ENV !== 'production') {
-  const isHookAlreadyLoaded = !!(window as WindowWithDevTools)
-    .__INSTANT_SEARCH_DEVTOOLS__;
+  const isHookAlreadyLoaded = !!(window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__;
 
   if (!isHookAlreadyLoaded) {
     // The hook could be laad before the page but it could be load after only
@@ -32,8 +28,7 @@ if (process.env.EXTENSION_ENV !== 'production') {
       const isSameSource = source === window;
       // @TODO: replace with the constant when the example
       // will be written with TypeScript
-      const isFromExtensionLoader =
-        message && message.source === 'instantsearch-devtools-loader';
+      const isFromExtensionLoader = message && message.source === 'instantsearch-devtools-loader';
 
       if (isSameSource && isFromExtensionLoader) {
         run();

@@ -6,8 +6,6 @@ type Props = {
   format: string;
 };
 
-const DateTime: React.SFC<Props> = ({ value, format }) => (
-  <>{dateFnsFormat(value, format)}</>
-);
+const DateTime: React.SFC<Props> = ({ value, format }) => <>{dateFnsFormat(value, format)}</>;
 
 export default DateTime;

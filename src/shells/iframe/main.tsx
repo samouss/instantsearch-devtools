@@ -19,10 +19,7 @@ const onIframeLoaded = () => {
   (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__ = bridge;
   (window as WindowWithDevTools).__INSTANT_SEARCH_DEVTOOLS__(helper);
 
-  render(
-    <App client={client} helper={helper} />,
-    document.getElementById('root'),
-  );
+  render(<App client={client} helper={helper} />, document.getElementById('root'));
 };
 
 const iframe = document.createElement('iframe');

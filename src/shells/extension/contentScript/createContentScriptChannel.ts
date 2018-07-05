@@ -20,8 +20,7 @@ const createContentScriptChannel = (context: Context = chrome) => {
 
   const onMessageFromPage = ({ source, data: message }: MessageEvent) => {
     const isSameSource = source === window;
-    const isFromExtension =
-      message && message.source === NAMESPACES.HOOK_NAMESPACE;
+    const isFromExtension = message && message.source === NAMESPACES.HOOK_NAMESPACE;
 
     if (isSameSource && isFromExtension) {
       // @NOTE: exeplicit cast the event, remove when the definition
