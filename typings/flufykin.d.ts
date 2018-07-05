@@ -7,6 +7,7 @@ declare module 'flufykin/dom' {
   export const SearchBox: any;
   export const Hits: any;
   export const Configure: any;
+  export const RefinementList: any;
 
   export default value;
 }
