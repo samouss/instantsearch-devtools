@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { head } from 'lodash-es';
+import head from 'lodash/head';
 import { HookEvent, ChangeHookEvent, SearchHookEvent, ResultHookEvent } from '../../types';
 import { Id, State, Event, ChangeEvent, SearchEvent, ResultEvent } from '../types';
 import { computeEventChanges } from './diff';
