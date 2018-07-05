@@ -40,7 +40,7 @@
     "@types/react-css-modules": "^4.6.1",
     "@types/react-dom": "^16.0.6",
     "@types/react-json-tree": "^0.6.7",
-    "@types/uuid": "^3.4.3",
+    "@types/uuid": "3.4.3",
     "autoprefixer": "8.6.4",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.2.0",
@@ -98,7 +98,7 @@
     "react-dom": "16.4.1",
     "react-instantsearch-theme-algolia": "4.5.2",
     "react-json-tree": "0.11.0",
-    "uuid": "3.3.0"
+    "uuid": "3.3.2"
   },
   "browserslist": [
     "last 2 versions",
