@@ -128,6 +128,22 @@ describe('diff', () => {
       expect(actual).toEqual(expectation);
     });
 
+    it('expect to return keys that change with they are omit', () => {
+      const previous = {
+        hitsPerPage: 25,
+        disjunctiveFacetsRefinements: {},
+      };
+
+      const next = {
+        disjunctiveFacetsRefinements: {},
+      };
+
+      const expectation = ['hitsPerPage'];
+      const actual = diff.collectUpdatedKeys(previous, next);
+
+      expect(actual).toEqual(expectation);
+    });
+
     it('expect to return an empty array when nothing change', () => {
       const previous = {
         hitsPerPage: 25,

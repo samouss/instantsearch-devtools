@@ -36,7 +36,9 @@ export const collectUpdatedKeys = (
   next: JSHelperObject,
   prefix: string = '',
 ): string[] => {
-  return Object.keys(next).reduce<string[]>((acc, attribute) => {
+  const uniqKeys = [...new Set([...Object.keys(previous), ...Object.keys(next)])];
+
+  return uniqKeys.reduce<string[]>((acc, attribute) => {
     const previousValue = previous[attribute];
     const nextValue = next[attribute];
 
