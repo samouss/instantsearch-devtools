@@ -9,8 +9,19 @@ export type ContentScriptPort = chrome.runtime.Port & {
 };
 
 export type JSHelper = {
-  on(event: 'change' | 'search', fn: (parameters: object) => void): void;
-  on(event: 'result', fn: (results: object, parameters: object) => void): void;
+  on(event: 'change' | 'search', fn: (parameters: JSHelperObject) => void): void;
+  on(event: 'result', fn: (results: JSHelperObject, parameters: JSHelperObject) => void): void;
+};
+
+// @WEAK - Until the SearchParameters - SearchResults are not typed
+export type JSHelperValue = string | number | boolean | undefined | JSHelperArray | JSHelperObject;
+
+// @WEAK - Until the SearchParameters - SearchResults are not typed
+export interface JSHelperArray extends Array<JSHelperValue> {}
+
+// @WEAK - Until the SearchParameters - SearchResults are not typed
+export type JSHelperObject = {
+  [x: string]: JSHelperValue;
 };
 
 export type WindowWithDevTools = Window & {
@@ -29,18 +40,18 @@ export type ReadyHookEvent = {
 
 export type ChangeHookEvent = {
   type: 'CHANGE';
-  parameters: object;
+  parameters: JSHelperObject;
 };
 
 export type SearchHookEvent = {
   type: 'SEARCH';
-  parameters: object;
+  parameters: JSHelperObject;
 };
 
 export type ResultHookEvent = {
   type: 'RESULT';
-  parameters: object;
-  results: object;
+  parameters: JSHelperObject;
+  results: JSHelperObject;
 };
 
 export type HookEvent = ReadyHookEvent | ChangeHookEvent | SearchHookEvent | ResultHookEvent;

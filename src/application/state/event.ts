@@ -2,7 +2,7 @@ import { v4 } from 'uuid';
 import head from 'lodash/head';
 import { HookEvent, ChangeHookEvent, SearchHookEvent, ResultHookEvent } from '../../types';
 import { Id, State, Event, ChangeEvent, SearchEvent, ResultEvent } from '../types';
-import { computeEventChanges } from './diff';
+import { collectEventDifferences } from './differences';
 
 const START = Date.now();
 
@@ -11,7 +11,7 @@ const createChangeEvent = (event: ChangeHookEvent): ChangeEvent => ({
   id: v4(),
   time: Date.now() - START,
   parameters: event.parameters,
-  diffs: [],
+  differences: [],
 });
 
 const createSearchEvent = (event: SearchHookEvent): SearchEvent => ({
@@ -19,7 +19,7 @@ const createSearchEvent = (event: SearchHookEvent): SearchEvent => ({
   id: v4(),
   time: Date.now() - START,
   parameters: event.parameters,
-  diffs: [],
+  differences: [],
 });
 
 const createResultEvent = (event: ResultHookEvent): ResultEvent => ({
@@ -28,7 +28,7 @@ const createResultEvent = (event: ResultHookEvent): ResultEvent => ({
   time: Date.now() - START,
   parameters: event.parameters,
   results: event.results,
-  diffs: [],
+  differences: [],
 });
 
 export const createEventFromHookEvent = (event: HookEvent): Event => {
@@ -51,26 +51,16 @@ export const createEventFromHookEvent = (event: HookEvent): Event => {
   }
 };
 
-const computeEventChanges = <T extends Event>(previous: T, next: T): Diff[] => {
-  const keysUpdated: string[] = Object.keys(next.parameters).filter(
-    attribute =>
-      !isEqual(previous.parameters[attribute], next.parameters[attribute]),
-  );
-
-  return keysUpdated.map(attribute => ({
-    previous: previous.parameters[attribute],
-    next: next.parameters[attribute],
-    attribute,
-  }));
-};
-
 const reducer = (state: State, event: Event): State => {
   switch (event.type) {
     case 'CHANGE': {
       const latestChangeEvent = getLatestChangeEvent(state);
       // @TODO: move when we create the event
       const nextEvent = latestChangeEvent
-        ? { ...event, diffs: computeEventChanges(latestChangeEvent, event) }
+        ? {
+            ...event,
+            differences: collectEventDifferences(latestChangeEvent.parameters, event.parameters),
+          }
         : event;
 
       return {
@@ -85,7 +75,10 @@ const reducer = (state: State, event: Event): State => {
       const latestEvent = getLatestSearchEvent(state);
       // @TODO: move when we create the event
       const nextEvent = latestEvent
-        ? { ...event, diffs: computeEventChanges(latestEvent, event) }
+        ? {
+            ...event,
+            differences: collectEventDifferences(latestEvent.parameters, event.parameters),
+          }
         : event;
 
       return {
@@ -101,7 +94,10 @@ const reducer = (state: State, event: Event): State => {
       const latestEvent = getLatestResultEvent(state);
       // @TODO: move when we create the event
       const nextEvent = latestEvent
-        ? { ...event, diffs: computeEventChanges(latestEvent, event) }
+        ? {
+            ...event,
+            differences: collectEventDifferences(latestEvent.parameters, event.parameters),
+          }
         : event;
 
       return {

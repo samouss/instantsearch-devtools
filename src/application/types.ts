@@ -1,38 +1,46 @@
+import { JSHelperValue, JSHelperObject } from '../types';
+
 export type Id = string;
 
-export type Diff = {
-  attribute: string;
-  previous: any; // @WEAK - JSValue
-  next: any; // @WEAK - JSValue
+type RawDifferences = {
+  previous: JSHelperValue;
+  next: JSHelperValue;
 };
 
-export type JSObject = {
-  [index: string]: any; // @WEAK - JSValue
+type ViewDifferences = {
+  previous: JSHelperValue;
+  next: JSHelperValue;
+};
+
+export type Differences = {
+  attribute: string;
+  raw: RawDifferences;
+  view: ViewDifferences;
 };
 
 export type ChangeEvent = {
   type: 'CHANGE';
   id: Id;
   time: number;
-  parameters: JSObject;
-  diffs: Diff[];
+  parameters: JSHelperObject;
+  differences: Differences[];
 };
 
 export type SearchEvent = {
   type: 'SEARCH';
   id: Id;
   time: number;
-  parameters: JSObject;
-  diffs: Diff[];
+  parameters: JSHelperObject;
+  differences: Differences[];
 };
 
 export type ResultEvent = {
   type: 'RESULT';
   id: Id;
   time: number;
-  parameters: JSObject;
-  results: JSObject;
-  diffs: Diff[];
+  parameters: JSHelperObject;
+  results: JSHelperObject;
+  differences: Differences[];
 };
 
 export type Event = ChangeEvent | SearchEvent | ResultEvent;
