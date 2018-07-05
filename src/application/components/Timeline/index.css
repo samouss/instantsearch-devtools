@@ -13,8 +13,8 @@
 
 .EventListItem {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid lightgray;
@@ -33,20 +33,49 @@
   outline: none;
 }
 
+.EventListItemSummary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.EventListItemDate {
+  font-weight: 600;
+}
+
+.DifferenceList {
+  padding-left: 0;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+.DifferenceListItem {
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.DifferenceListItem:last-child {
+  margin-bottom: 0;
+}
+
+.DifferenceListItemCode {
+  display: inline-flex;
+  background: #f6f8fa;
+  padding: 2px 5px;
+  font-size: 0.85rem;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
 .EventListItemSentinel {
   justify-content: center;
   border-bottom: none;
+  align-items: center;
 }
 
 .EventListItemSentinel:hover {
   background: none;
   cursor: default;
-}
-
-.EventListItemButton {
-
-}
-
-.EventListItemDate {
-  font-weight: 600;
 }

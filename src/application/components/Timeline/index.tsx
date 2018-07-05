@@ -23,10 +23,24 @@ const Timeline: SFC<Props> = ({ events, selectedEventId, onClickEventTimeline })
           )}
           onClick={() => onClickEventTimeline(event)}
         >
-          <Type name={event.type} />
-          <span styleName="EventListItemDate">
-            <DateTime value={event.time} format="mm:ss.SSS" />
-          </span>
+          <div styleName="EventListItemSummary">
+            <Type name={event.type} />
+            <span styleName="EventListItemDate">
+              <DateTime value={event.time} format="mm:ss.SSS" />
+            </span>
+          </div>
+          {event.type !== 'RESULT' &&
+            Boolean(event.differences.length) && (
+              <ul styleName="DifferenceList">
+                {event.differences.map(difference => (
+                  <li key={difference.attribute} styleName="DifferenceListItem">
+                    <code styleName="DifferenceListItemCode">
+                      {difference.attribute}: {difference.view.previous} → {difference.view.next}
+                    </code>
+                  </li>
+                ))}
+              </ul>
+            )}
         </li>
       ))}
       <li styleName="EventListItem EventListItemSentinel">

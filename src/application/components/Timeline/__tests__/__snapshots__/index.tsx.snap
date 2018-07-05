@@ -1,5 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Timeline /> expect to ignore differences on \`RESULT\` 1`] = `
+<div
+  styleName="Timeline"
+>
+  <ol
+    styleName="EventList"
+  >
+    <li
+      className="EventListItem"
+      key="CHANGE_000"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="CHANGE"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={1000}
+          />
+        </span>
+      </div>
+    </li>
+    <li
+      className="EventListItem"
+      key="SEARCH_ID"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="SEARCH"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={2000}
+          />
+        </span>
+      </div>
+    </li>
+    <li
+      className="EventListItem"
+      key="RESULT_000"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="RESULT"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={3000}
+          />
+        </span>
+      </div>
+    </li>
+    <li
+      styleName="EventListItem EventListItemSentinel"
+    >
+      <span
+        aria-label="Empty"
+        role="img"
+      >
+        📭
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+
 exports[`<Timeline /> expect to render with a selected event 1`] = `
 <div
   styleName="Timeline"
@@ -12,51 +96,165 @@ exports[`<Timeline /> expect to render with a selected event 1`] = `
       key="CHANGE_000"
       onClick={[Function]}
     >
-      <Type
-        name="CHANGE"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={1000}
+        <Type
+          name="CHANGE"
         />
-      </span>
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={1000}
+          />
+        </span>
+      </div>
     </li>
     <li
       className="EventListItem"
       key="SEARCH_ID"
       onClick={[Function]}
     >
-      <Type
-        name="SEARCH"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={2000}
+        <Type
+          name="SEARCH"
         />
-      </span>
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={2000}
+          />
+        </span>
+      </div>
     </li>
     <li
       className="EventListItem"
       key="RESULT_000"
       onClick={[Function]}
     >
-      <Type
-        name="RESULT"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={3000}
+        <Type
+          name="RESULT"
         />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={3000}
+          />
+        </span>
+      </div>
+    </li>
+    <li
+      styleName="EventListItem EventListItemSentinel"
+    >
+      <span
+        aria-label="Empty"
+        role="img"
+      >
+        📭
       </span>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`<Timeline /> expect to render with differences 1`] = `
+<div
+  styleName="Timeline"
+>
+  <ol
+    styleName="EventList"
+  >
+    <li
+      className="EventListItem"
+      key="CHANGE_000"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="CHANGE"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={1000}
+          />
+        </span>
+      </div>
+      <ul
+        styleName="DifferenceList"
+      >
+        <li
+          key="query"
+          styleName="DifferenceListItem"
+        >
+          <code
+            styleName="DifferenceListItemCode"
+          >
+            query
+            : 
+            ""
+             → 
+            "Apple"
+          </code>
+        </li>
+      </ul>
+    </li>
+    <li
+      className="EventListItem"
+      key="SEARCH_ID"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="SEARCH"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={2000}
+          />
+        </span>
+      </div>
+    </li>
+    <li
+      className="EventListItem"
+      key="RESULT_000"
+      onClick={[Function]}
+    >
+      <div
+        styleName="EventListItemSummary"
+      >
+        <Type
+          name="RESULT"
+        />
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={3000}
+          />
+        </span>
+      </div>
     </li>
     <li
       styleName="EventListItem EventListItemSentinel"
@@ -84,51 +282,63 @@ exports[`<Timeline /> expect to render with events 1`] = `
       key="CHANGE_000"
       onClick={[Function]}
     >
-      <Type
-        name="CHANGE"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={1000}
+        <Type
+          name="CHANGE"
         />
-      </span>
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={1000}
+          />
+        </span>
+      </div>
     </li>
     <li
       className="EventListItem"
       key="SEARCH_000"
       onClick={[Function]}
     >
-      <Type
-        name="SEARCH"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={2000}
+        <Type
+          name="SEARCH"
         />
-      </span>
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={2000}
+          />
+        </span>
+      </div>
     </li>
     <li
       className="EventListItem"
       key="RESULT_000"
       onClick={[Function]}
     >
-      <Type
-        name="RESULT"
-      />
-      <span
-        styleName="EventListItemDate"
+      <div
+        styleName="EventListItemSummary"
       >
-        <DateTime
-          format="mm:ss.SSS"
-          value={3000}
+        <Type
+          name="RESULT"
         />
-      </span>
+        <span
+          styleName="EventListItemDate"
+        >
+          <DateTime
+            format="mm:ss.SSS"
+            value={3000}
+          />
+        </span>
+      </div>
     </li>
     <li
       styleName="EventListItem EventListItemSentinel"
