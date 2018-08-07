@@ -29,7 +29,7 @@
     "@babel/preset-react": "7.0.0-beta.54",
     "@babel/preset-stage-2": "7.0.0-beta.54",
     "@babel/preset-typescript": "7.0.0-beta.54",
-    "@types/algoliasearch": "^3.27.4",
+    "@types/algoliasearch": "3.27.5",
     "@types/chrome": "^0.0.69",
     "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.11",
@@ -88,7 +88,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.54",
-    "algoliasearch": "3.29.0",
+    "algoliasearch": "3.30.0",
     "algoliasearch-helper": "2.26.1",
     "date-fns": "1.29.0",
     "flufykin": "4.5.3",

@@ -727,9 +727,9 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@types/algoliasearch@^3.27.4":
-  version "3.27.4"
-  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.4.tgz#4799b9f0cbd051c948f9fae4089630512810b2f3"
+"@types/algoliasearch@3.27.5":
+  version "3.27.5"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.5.tgz#266843bbae54d4d393c3143f3786a82ed302030e"
 
 "@types/cheerio@*":
   version "0.22.8"
@@ -930,9 +930,9 @@ algoliasearch-helper@^2.21.0:
     qs "^6.2.1"
     util "^0.10.3"
 
-algoliasearch@3.29.0:
-  version "3.29.0"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.29.0.tgz#d04021a5450be55ce314b928bba4a38723399bd8"
+algoliasearch@3.30.0:
+  version "3.30.0"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.30.0.tgz#355585e49b672e5f71d45b9c2b371ecdff129cd1"
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
