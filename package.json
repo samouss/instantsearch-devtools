@@ -70,7 +70,7 @@
     "jest": "23.6.0",
     "jest-watch-typeahead": "^0.1.0",
     "postcss-loader": "3.0.0",
-    "postcss-nested": "3.0.0",
+    "postcss-nested": "4.1.0",
     "prettier": "1.14.2",
     "raw-loader": "0.5.1",
     "react-test-renderer": "16.5.1",
