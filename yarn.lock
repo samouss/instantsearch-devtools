@@ -741,9 +741,9 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@types/algoliasearch@3.27.6":
-  version "3.27.6"
-  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.6.tgz#7521fa358669516ff262d4ece8657ef9a6fb9131"
+"@types/algoliasearch@3.27.7":
+  version "3.27.7"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.7.tgz#f655a822f7482091c13ed55b760b94f7acc1e72b"
 
 "@types/cheerio@*":
   version "0.22.8"
