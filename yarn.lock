@@ -836,10 +836,10 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@types/algoliasearch@3.27.8":
-  version "3.27.8"
-  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.27.8.tgz#16833bb41390bca0fc9d8acd196bb51104d3b8e4"
-  integrity sha512-o4+3mfNRWfEtfh4KGZPSENhnS2dBpERidb97Puf0remweQUqDAiY+NL8dxeIn9Oi8JDhabtGWx3NUkb5iLCApw==
+"@types/algoliasearch@3.30.1":
+  version "3.30.1"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.30.1.tgz#0cb9b918ba7f94c1e60527ba74273ca276d17137"
+  integrity sha512-UKzBzTH2UDXiLSb/Zyf9jqf2y8rScJXeLBz1Jie8VUZv6xhg1lPaqgkEsTtc8Qi7HYLjlnw768v0CEsCxsmLOw==
 
 "@types/cheerio@*":
   version "0.22.8"
