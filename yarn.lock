@@ -898,10 +898,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.1.2.tgz#a6cd37deb9110a8c63dc1435d6ee2518b3bd8e54"
   integrity sha512-qXPAaH+1KJBCRtQub2cd7GOnKfWkgRr++luya81ksUs+DA8QG2nMNZuved5K4Nb4enR61aS64CocEJNsjCKwog==
 
-"@types/lodash@4.14.116":
-  version "4.14.116"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
-  integrity sha512-lRnAtKnxMXcYYXqOiotTmJd74uawNWuPnsnPrrO7HiFuE3npE2iQhfABatbYDyxTNqZNuXzcKGhw37R7RjBFLg==
+"@types/lodash@4.14.118":
+  version "4.14.118"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.118.tgz#247bab39bfcc6d910d4927c6e06cbc70ec376f27"
+  integrity sha512-iiJbKLZbhSa6FYRip/9ZDX6HXhayXLDGY2Fqws9cOkEQ6XeKfaxB0sC541mowZJueYyMnVUmmG+al5/4fCDrgw==
 
 "@types/node@*":
   version "8.5.1"
