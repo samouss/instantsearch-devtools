@@ -32,7 +32,7 @@
     "@types/algoliasearch": "3.27.8",
     "@types/chrome": "^0.0.69",
     "@types/classnames": "^2.2.4",
-    "@types/enzyme": "3.1.14",
+    "@types/enzyme": "3.1.15",
     "@types/enzyme-adapter-react-16": "1.0.3",
     "@types/jest": "^23.1.2",
     "@types/lodash": "4.14.116",
