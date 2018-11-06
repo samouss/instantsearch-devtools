@@ -23,12 +23,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.54",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.54",
-    "@babel/preset-env": "7.0.0-beta.54",
-    "@babel/preset-react": "7.0.0-beta.54",
-    "@babel/preset-stage-2": "7.0.0-beta.54",
-    "@babel/preset-typescript": "7.0.0-beta.54",
+    "@babel/core": "7.1.5",
+    "@babel/plugin-transform-modules-commonjs": "7.1.0",
+    "@babel/preset-env": "7.1.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-stage-2": "7.0.0",
+    "@babel/preset-typescript": "7.1.0",
     "@types/algoliasearch": "3.27.8",
     "@types/chrome": "^0.0.69",
     "@types/classnames": "^2.2.4",
@@ -87,7 +87,7 @@
     "write-file-webpack-plugin": "4.4.1"
   },
   "dependencies": {
-    "@babel/polyfill": "7.0.0-beta.54",
+    "@babel/polyfill": "7.0.0",
     "algoliasearch": "3.30.0",
     "algoliasearch-helper": "2.26.1",
     "date-fns": "1.29.0",
