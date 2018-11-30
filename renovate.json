@@ -1,5 +1,1 @@
-{
-  "extends": ["config:base"],
-  "ignoreDeps": ["react-instantsearch"],
-  "automerge": true
-}
+
