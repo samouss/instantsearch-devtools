@@ -26,7 +26,7 @@
     "@babel/core": "7.0.0-beta.54",
     "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.54",
     "@babel/preset-env": "7.0.0-beta.54",
-    "@babel/preset-react": "7.0.0-beta.54",
+    "@babel/preset-react": "7.0.0",
     "@babel/preset-stage-2": "7.0.0-beta.54",
     "@babel/preset-typescript": "7.0.0-beta.54",
     "@types/algoliasearch": "3.27.8",
